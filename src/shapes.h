@@ -1,9 +1,15 @@
 #ifndef Shapes_Header
 #define Shapes_Header
 
-#include "GL/freeglut.h"
-#include "GL/gl.h"
-#include "util.h"
+#ifdef __linux__
+    #include "GL/freeglut.h"
+    #include "GL/gl.h"
+#elif _WIN32
+    // Put your windows imports here
+#elif __APPLE__
+    #include <freeglut.h>
+    #include "util.h"
+#endif
 
 class Shapes {
   private:
