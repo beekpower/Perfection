@@ -32,6 +32,9 @@ class Shapes {
     void drawThinCross();
     void drawFlower();
     void drawQuarterCircle();
+    void drawQuad();
+    void drawCircleFlower();
+    void drawT();
 };
 
 #endif

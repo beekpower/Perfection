@@ -211,7 +211,6 @@ void Shapes::drawKite() {
 }
 
 void Shapes::draw5Star() {
-  int degree = 0;
   Util().drawPolygon(5, 25);
   for (int i = 0; i < 5; i++) {
     int degree = i * (360/5);
@@ -229,7 +228,6 @@ void Shapes::draw5Star() {
 }
 
 void Shapes::draw6Star() {
-  int degree = 0;
   Util().drawPolygon(6, 25);
   for (int i = 0; i < 6; i++) {
     int degree = i * (360/6);
@@ -270,7 +268,6 @@ void Shapes::drawThinCross() {
 }
 
 void Shapes::drawFlower() {
-  int degree = 0;
   Util().drawPolygon(5, 25);
   for (int i = 0; i < 5; i++) {
     int degree = i * (360/5);
@@ -298,5 +295,43 @@ void Shapes::drawQuarterCircle() {
       glVertex2i(77,0);
     glEnd();
   glPopMatrix();
+  drawCenterPeg();
+}
+
+void Shapes::drawQuad() {
+  glBegin(GL_POLYGON);
+    glVertex2i(50, 50);
+    glVertex2i(-35, 50);
+    glVertex2i(-50, -50);
+    glVertex2i(35, -50);
+  glEnd();
+  drawCenterPeg();
+}
+
+void Shapes::drawCircleFlower() {
+  for (int i = 0; i < 5; i++) {
+    int degree = i * (360/5);
+    glPushMatrix();
+      glRotatef(degree,0,0,1);
+      glTranslatef(-25, 0, 0);
+      Util().drawCircle(22);
+    glPopMatrix();
+  }
+  drawCenterPeg();
+}
+
+void Shapes::drawT() {
+  glBegin(GL_POLYGON);
+    glVertex2i(50, -15);
+    glVertex2i(-50, -15);
+    glVertex2i(-50, -50);
+    glVertex2i(50, -50);
+  glEnd();
+  glBegin(GL_POLYGON);
+    glVertex2i(20, -15);
+    glVertex2i(-20, -15);
+    glVertex2i(-20, 50);
+    glVertex2i(20, 50);
+  glEnd();
   drawCenterPeg();
 }
