@@ -16,8 +16,8 @@ void Shapes::drawRelativeBox() {
   glEnd();
 }
 
-void Shapes::drawShape(int x) {
-  switch (x) {
+void Shapes::drawShape(int shape) {
+  switch (shape) {
     default:
     case 0:
       drawCircle();
@@ -95,6 +95,87 @@ void Shapes::drawShape(int x) {
       drawHexagon();
   }
 }
+
+int Shapes::symmetricalDegrees(int shape) {
+  switch (shape) {
+    default:
+    case 0:
+      return 360;
+      break;
+    case 1:
+      return 1;
+      break;
+    case 2:
+      return 4;
+      break;
+    case 3:
+      return 2;
+      break;
+    case 4:
+      return 2;
+      break;
+    case 5:
+      return 2;
+      break;
+    case 6:
+      return 1;
+      break;
+    case 7:
+      return 8;
+      break;
+    case 8:
+      return 1;
+      break;
+    case 9:
+      return 2;
+      break;
+    case 10:
+      return 2;
+      break;
+    case 11:
+      return 4;
+      break;
+    case 12:
+      return 5;
+      break;
+    case 13:
+      return 3;
+      break;
+    case 14:
+      return 2;
+      break;
+    case 15:
+      return 1;
+      break;
+    case 16:
+      return 5;
+      break;
+    case 17:
+      return 6;
+      break;
+    case 18:
+      return 2;
+      break;
+    case 19:
+      return 5;
+      break;
+    case 20:
+      return 1;
+      break;
+    case 21:
+      return 2;
+      break;
+    case 22:
+      return 5;
+      break;
+    case 23:
+      return 1;
+      break;
+    case 24:
+      return 6;
+  }
+}
+
 
 void Shapes::drawCircle()
 {

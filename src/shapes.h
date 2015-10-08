@@ -10,7 +10,8 @@ class Shapes {
     void drawCenterPeg();
   public:
     void drawRelativeBox();
-    void drawShape(int x);
+    void drawShape(int shape);
+    int symmetricalDegrees(int shape);
     //Shapes
     void drawCircle();
     void drawHalfCircle();
