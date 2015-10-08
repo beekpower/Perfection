@@ -10,6 +10,8 @@ class Shapes {
     void drawCenterPeg();
   public:
     void drawRelativeBox();
+    void drawShape(int x);
+    //Shapes
     void drawCircle();
     void drawHalfCircle();
     void drawSquare();

@@ -16,6 +16,86 @@ void Shapes::drawRelativeBox() {
   glEnd();
 }
 
+void Shapes::drawShape(int x) {
+  switch (x) {
+    default:
+    case 0:
+      drawCircle();
+      break;
+    case 1:
+      drawHalfCircle();
+      break;
+    case 2:
+      drawSquare();
+      break;
+    case 3:
+      drawOffsetCircle1();
+      break;
+    case 4:
+      drawOffsetCircle2();
+      break;
+    case 5:
+      drawRectangle();
+      break;
+    case 6:
+      drawRightTriangle();
+      break;
+    case 7:
+      drawOctogon();
+      break;
+    case 8:
+      drawCup();
+      break;
+    case 9:
+      drawThinCylinder();
+      break;
+    case 10:
+      drawThickCylinder();
+      break;
+    case 11:
+      drawThickCross();
+      break;
+    case 12:
+      drawPentagon();
+      break;
+    case 13:
+      drawEqualTriangle();
+      break;
+    case 14:
+      drawRhombus();
+      break;
+    case 15:
+      drawKite();
+      break;
+    case 16:
+      draw5Star();
+      break;
+    case 17:
+      draw6Star();
+      break;
+    case 18:
+      drawThinCross();
+      break;
+    case 19:
+      drawFlower();
+      break;
+    case 20:
+      drawQuarterCircle();
+      break;
+    case 21:
+      drawQuad();
+      break;
+    case 22:
+      drawCircleFlower();
+      break;
+    case 23:
+      drawT();
+      break;
+    case 24:
+      drawHexagon();
+  }
+}
+
 void Shapes::drawCircle()
 {
   Util().drawCircle(50, 0, 360);
