@@ -8,8 +8,9 @@
     // Put your windows imports here
 #elif __APPLE__
     #include <freeglut.h>
-    #include "util.h"
 #endif
+
+#include "util.h"
 
 class Shapes {
   private:
