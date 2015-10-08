@@ -5,9 +5,9 @@
     // Put your windows imports here
 #elif __APPLE__
     #include <freeglut.h>
-    #include "util.h"
 #endif
 
+#include "util.h"
 #include "math.h"
 #include "stdio.h"
 #include "shapes.h"
