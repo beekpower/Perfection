@@ -31,7 +31,7 @@ void Shapes::drawHalfCircle() {
 }
 
 void Shapes::drawSquare() {
-  Util().drawPolygon(4);
+  Util().drawPolygon(4, 50);
   drawCenterPeg();
 }
 
@@ -60,7 +60,7 @@ void Shapes::drawOffsetCircle2() {
 }
 
 void Shapes::drawHexagon() {
-  Util().drawPolygon(6);
+  Util().drawPolygon(6, 50);
   drawCenterPeg();
 }
 
@@ -111,7 +111,7 @@ void Shapes::drawCup() {
 }
 
 void Shapes::drawEqualTriangle() {
-  Util().drawPolygon(3);
+  Util().drawPolygon(3, 50);
   drawCenterPeg();
 }
 
@@ -157,7 +157,7 @@ void Shapes::drawThickCylinder() {
 }
 
 void Shapes::drawPentagon() {
-  Util().drawPolygon(5);
+  Util().drawPolygon(5, 50);
   drawCenterPeg();
 }
 
@@ -179,6 +179,123 @@ void Shapes::drawThickCross() {
       glVertex2i(48, 20);
       glVertex2i(48, -20);
       glVertex2i(-48, -20);
+    glEnd();
+  glPopMatrix();
+  drawCenterPeg();
+}
+
+void Shapes::drawRhombus() {
+  glBegin(GL_POLYGON);
+    glVertex2i(-50, 50);
+    glVertex2i(25, 25);
+    glVertex2i(50, -50);
+    glVertex2i(-25, -25);
+  glEnd();
+  drawCenterPeg();
+}
+
+void Shapes::drawKite() {
+  glBegin(GL_POLYGON);
+    glVertex2i(-50, 50);
+    glVertex2i(20, 20);
+    glVertex2i(30, -30);
+    glVertex2i(-20, -20);
+  glEnd();
+  // glBegin(GL_POLYGON);
+  //   glVertex2i(-50, 50);
+  //   glVertex2i(35, 5);
+  //   glVertex2i(30, -30);
+  //   glVertex2i(-5, -35);
+  // glEnd();
+  drawCenterPeg();
+}
+
+void Shapes::draw5Star() {
+  int degree = 0;
+  Util().drawPolygon(5, 25);
+  for (int i = 0; i < 5; i++) {
+    int degree = i * (360/5);
+    glPushMatrix();
+      glRotatef(degree,0,0,1);
+      glTranslatef(-20, 0, 0);
+      glBegin(GL_POLYGON);
+        glVertex2i(0, 15.5);
+        glVertex2i(0, -15.5);
+        glVertex2i(-31, 0);
+      glEnd();
+    glPopMatrix();
+  }
+  drawCenterPeg();
+}
+
+void Shapes::draw6Star() {
+  int degree = 0;
+  Util().drawPolygon(6, 25);
+  for (int i = 0; i < 6; i++) {
+    int degree = i * (360/6);
+    glPushMatrix();
+      glRotatef(degree,0,0,1);
+      glTranslatef(0, 21, 0);
+      glBegin(GL_POLYGON);
+        glVertex2i(0, 25);
+        glVertex2i(-12.5, 0);
+        glVertex2i(12.5, 0);
+      glEnd();
+    glPopMatrix();
+  }
+  drawCenterPeg();
+}
+
+void Shapes::drawThinCross() {
+  glPushMatrix();
+    glRotatef(55,0,0,1.0);
+    glBegin(GL_POLYGON);
+      glVertex2i(-48, 7);
+      glVertex2i(48, 7);
+      glVertex2i(48, -7);
+      glVertex2i(-48, -7);
+    glEnd();
+  glPopMatrix();
+
+  glPushMatrix();
+    glRotatef(-55,0,0,1.0);
+    glBegin(GL_POLYGON);
+      glVertex2i(-48, 7);
+      glVertex2i(48, 7);
+      glVertex2i(48, -7);
+      glVertex2i(-48, -7);
+    glEnd();
+  glPopMatrix();
+  drawCenterPeg();
+}
+
+void Shapes::drawFlower() {
+  int degree = 0;
+  Util().drawPolygon(5, 25);
+  for (int i = 0; i < 5; i++) {
+    int degree = i * (360/5);
+    glPushMatrix();
+      glRotatef(degree,0,0,1);
+      glTranslatef(-20, 0, 0);
+      glBegin(GL_POLYGON);
+        glVertex2i(0, 15.5);
+        glVertex2i(0, -15.5);
+        glVertex2i(-25, -15.5);
+        glVertex2i(-25, 15.5);
+      glEnd();
+    glPopMatrix();
+  }
+  drawCenterPeg();
+}
+
+void Shapes::drawQuarterCircle() {
+  glPushMatrix();
+    glTranslatef(-30, -30, 0);
+    Util().drawCircle(75, 0, 90);
+    glBegin(GL_POLYGON);
+      glVertex2i(0, 77);
+      glVertex2i(0, 0);
+      glVertex2i(77,0);
     glEnd();
   glPopMatrix();
   drawCenterPeg();

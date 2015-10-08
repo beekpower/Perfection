@@ -25,6 +25,13 @@ class Shapes {
     void drawThickCross();
     void drawPentagon();
     void drawEqualTriangle();
+    void drawRhombus();
+    void drawKite();
+    void draw5Star();
+    void draw6Star();
+    void drawThinCross();
+    void drawFlower();
+    void drawQuarterCircle();
 };
 
 #endif

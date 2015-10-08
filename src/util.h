@@ -9,7 +9,7 @@ class Util {
   public:
     void drawCircle(int radius, int startDegree, int endDegree);
     void drawCircle(int radius);
-    void drawPolygon(int n);
+    void drawPolygon(int n, int radius);
 };
 
 #endif

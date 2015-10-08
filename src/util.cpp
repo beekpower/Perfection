@@ -24,13 +24,13 @@ void Util::drawCircle(int radius) {
   glEnd();
 }
 
-void Util::drawPolygon(int n) {
+void Util::drawPolygon(int n, int radius) {
   float angleIncrement = 360.0f / n;
   angleIncrement *= M_PI / 180.0f;
   glBegin(GL_TRIANGLE_FAN);
     float angle = 0.0f;
     for (int k = 0; k < n; ++k) {
-      glVertex2f(50 * cos(angle), 50 * sin(angle));
+      glVertex2f(radius * cos(angle), radius * sin(angle));
       angle += angleIncrement;
     }
   glEnd();
