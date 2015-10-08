@@ -10,7 +10,6 @@
     #include <freeglut.h>
 #endif
 
-#include "util.h"
 #include "math.h"
 
 class Util {
