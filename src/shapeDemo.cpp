@@ -9,6 +9,7 @@
 
 #include "util.h"
 #include "math.h"
+#include "piece.h"
 #include "stdio.h"
 #include "shapes.h"
 
@@ -37,6 +38,12 @@ void draw() {
       }
     }
   glPopMatrix();
+  glFlush();
+}
+
+void drawPiece() {
+  Piece* piece1 = new Piece(10, 10, CIRCLE_FLOWER);
+  piece1->draw();
   glFlush();
 }
 
@@ -84,7 +91,7 @@ int main(int argc, char** argv) {
   glutInitWindowPosition(100, 150);                 //set the window position
   glutCreateWindow("Project 1 Shapes");                   //create the window and window name
   glutKeyboardFunc(processNormalKeys);
-  glutDisplayFunc(draw);                     //set the redraw function                            //set the mouse event function
+  glutDisplayFunc(drawPiece);                     //set the redraw function                            //set the mouse event function
   init();                                           //init function
   glutMainLoop();                                   //enter the glut loop
   return (0);
