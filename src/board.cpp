@@ -68,7 +68,7 @@ void Board::drawHeader() {
     // Outline it so it looks good
     glLineWidth(2);
     glBegin(GL_LINE_STRIP);
-        glColor3f((float)0/255, (float)0/255, (float)0/255);
+        glColor3ub(230, 221, 42);
         glVertex2f(-300,500 - boardOffset);
         glVertex2f(-300,325 - boardOffset);
         glVertex2f(300,325 - boardOffset);

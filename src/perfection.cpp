@@ -26,11 +26,9 @@ void draw() {
   //Clear the whole screen
   glClear(GL_COLOR_BUFFER_BIT);
     // Draw board
-    drawBoard();
     board->draw();
 
     // Draw shapes
-    Shapes::drawRelativeBox();
     glPushMatrix();
     glTranslatef(-920, 420, 0);
     int row = 0;
@@ -59,9 +57,6 @@ void processNormalKeys(unsigned char key, int x, int y) {
     }
     glutPostRedisplay();
   }
-
-
-
 }
 
 
