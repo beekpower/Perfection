@@ -15,7 +15,7 @@ private:
 	int loc_x;
 	int loc_y;
 	int rotation;
-	pieceType type;
+	int type;
 
 public:
 	Piece(int x, int y, int t);
