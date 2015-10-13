@@ -14,37 +14,37 @@
 
 class Shapes {
   private:
-    void drawCenterPeg();
+    void static drawCenterPeg();
   public:
-    void drawRelativeBox();
-    void drawShape(int shape);
-    int symmetricalDegrees(int shape);
+    void static drawRelativeBox();
+    void static drawShape(int shape);
+    int static symmetricalDegrees(int shape);
     //Shapes
-    void drawCircle();
-    void drawHalfCircle();
-    void drawSquare();
-    void drawOffsetCircle1();
-    void drawOffsetCircle2();
-    void drawHexagon();
-    void drawRectangle();
-    void drawRightTriangle();
-    void drawOctogon();
-    void drawCup();
-    void drawThinCylinder();
-    void drawThickCylinder();
-    void drawThickCross();
-    void drawPentagon();
-    void drawEqualTriangle();
-    void drawRhombus();
-    void drawKite();
-    void draw5Star();
-    void draw6Star();
-    void drawThinCross();
-    void drawFlower();
-    void drawQuarterCircle();
-    void drawQuad();
-    void drawCircleFlower();
-    void drawT();
+    void static drawCircle();
+    void static drawHalfCircle();
+    void static drawSquare();
+    void static drawOffsetCircle1();
+    void static drawOffsetCircle2();
+    void static drawHexagon();
+    void static drawRectangle();
+    void static drawRightTriangle();
+    void static drawOctogon();
+    void static drawCup();
+    void static drawThinCylinder();
+    void static drawThickCylinder();
+    void static drawThickCross();
+    void static drawPentagon();
+    void static drawEqualTriangle();
+    void static drawRhombus();
+    void static drawKite();
+    void static draw5Star();
+    void static draw6Star();
+    void static drawThinCross();
+    void static drawFlower();
+    void static drawQuarterCircle();
+    void static drawQuad();
+    void static drawCircleFlower();
+    void static drawT();
 };
 
 #endif

@@ -20,7 +20,7 @@ int degreeToRotate = 0;
 void draw() {
   //Clear the whole screen
   glClear(GL_COLOR_BUFFER_BIT);
-    Shapes().drawRelativeBox();
+    Shapes::drawRelativeBox();
     glPushMatrix();
     glTranslatef(-920, 420, 0);
     int row = 0;
@@ -30,7 +30,7 @@ void draw() {
       glPushMatrix();
         glTranslatef(105 * (i % 5), -row * 105, 0);
         glRotatef(degreeToRotate,0,0,1);
-        Shapes().drawShape(i);
+        Shapes::drawShape(i);
       glPopMatrix();
       if (((i+1)%5) == 0) {
         row++;

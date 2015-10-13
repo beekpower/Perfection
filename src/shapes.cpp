@@ -3,7 +3,7 @@
 //private
 void Shapes::drawCenterPeg() {
   glColor3ub(0, 0, 0);
-  Util().drawCircle(5, 0, 360);
+  Util::drawCircle(5, 0, 360);
 }
 
 //public
@@ -179,31 +179,31 @@ int Shapes::symmetricalDegrees(int shape) {
 
 void Shapes::drawCircle()
 {
-  Util().drawCircle(50, 0, 360);
+  Util::drawCircle(50, 0, 360);
   drawCenterPeg();
 }
 
 void Shapes::drawHalfCircle() {
   glPushMatrix();
     glTranslatef(15, -15, 0);
-    Util().drawCircle(48, 45, 225);
+    Util::drawCircle(48, 45, 225);
   glPopMatrix();
   drawCenterPeg();
 }
 
 void Shapes::drawSquare() {
-  Util().drawPolygon(4, 50);
+  Util::drawPolygon(4, 50);
   drawCenterPeg();
 }
 
 void Shapes::drawOffsetCircle1() {
   glPushMatrix();
     glTranslatef(-12, -12, 0);
-    Util().drawCircle(38, 45, 225);
+    Util::drawCircle(38, 45, 225);
   glPopMatrix();
   glPushMatrix();
     glTranslatef(11, 13, 0);
-    Util().drawCircle(38, 225, 45);
+    Util::drawCircle(38, 225, 45);
   glPopMatrix();
   drawCenterPeg();
 }
@@ -211,17 +211,17 @@ void Shapes::drawOffsetCircle1() {
 void Shapes::drawOffsetCircle2() {
   glPushMatrix();
     glTranslatef(11, -13, 0);
-    Util().drawCircle(38, 315, 135);
+    Util::drawCircle(38, 315, 135);
   glPopMatrix();
   glPushMatrix();
     glTranslatef(-12, 12, 0);
-    Util().drawCircle(38, 135, 315);
+    Util::drawCircle(38, 135, 315);
   glPopMatrix();
   drawCenterPeg();
 }
 
 void Shapes::drawHexagon() {
-  Util().drawPolygon(6, 50);
+  Util::drawPolygon(6, 50);
   drawCenterPeg();
 }
 
@@ -272,18 +272,18 @@ void Shapes::drawCup() {
 }
 
 void Shapes::drawEqualTriangle() {
-  Util().drawPolygon(3, 50);
+  Util::drawPolygon(3, 50);
   drawCenterPeg();
 }
 
 void Shapes::drawThinCylinder() {
   glPushMatrix();
     glTranslatef(-25, 25, 0);
-    Util().drawCircle(25, 45, 225);
+    Util::drawCircle(25, 45, 225);
   glPopMatrix();
   glPushMatrix();
     glTranslatef(25, -25, 0);
-    Util().drawCircle(25, 225, 45);
+    Util::drawCircle(25, 225, 45);
   glPopMatrix();
 
   glBegin(GL_POLYGON);
@@ -300,11 +300,11 @@ void Shapes::drawThickCylinder() {
     glRotatef(90,0,0,1.0);
     glPushMatrix();
       glTranslatef(-15, 15, 0);
-      Util().drawCircle(35, 45, 225);
+      Util::drawCircle(35, 45, 225);
     glPopMatrix();
     glPushMatrix();
       glTranslatef(15, -15, 0);
-      Util().drawCircle(35, 225, 45);
+      Util::drawCircle(35, 225, 45);
     glPopMatrix();
 
     glBegin(GL_POLYGON);
@@ -318,7 +318,7 @@ void Shapes::drawThickCylinder() {
 }
 
 void Shapes::drawPentagon() {
-  Util().drawPolygon(5, 50);
+  Util::drawPolygon(5, 50);
   drawCenterPeg();
 }
 
@@ -372,7 +372,7 @@ void Shapes::drawKite() {
 }
 
 void Shapes::draw5Star() {
-  Util().drawPolygon(5, 25);
+  Util::drawPolygon(5, 25);
   for (int i = 0; i < 5; i++) {
     int degree = i * (360/5);
     glPushMatrix();
@@ -389,7 +389,7 @@ void Shapes::draw5Star() {
 }
 
 void Shapes::draw6Star() {
-  Util().drawPolygon(6, 25);
+  Util::drawPolygon(6, 25);
   for (int i = 0; i < 6; i++) {
     int degree = i * (360/6);
     glPushMatrix();
@@ -429,7 +429,7 @@ void Shapes::drawThinCross() {
 }
 
 void Shapes::drawFlower() {
-  Util().drawPolygon(5, 25);
+  Util::drawPolygon(5, 25);
   for (int i = 0; i < 5; i++) {
     int degree = i * (360/5);
     glPushMatrix();
@@ -449,7 +449,7 @@ void Shapes::drawFlower() {
 void Shapes::drawQuarterCircle() {
   glPushMatrix();
     glTranslatef(-30, -30, 0);
-    Util().drawCircle(75, 0, 90);
+    Util::drawCircle(75, 0, 90);
     glBegin(GL_POLYGON);
       glVertex2i(0, 77);
       glVertex2i(0, 0);
@@ -475,7 +475,7 @@ void Shapes::drawCircleFlower() {
     glPushMatrix();
       glRotatef(degree,0,0,1);
       glTranslatef(-25, 0, 0);
-      Util().drawCircle(22);
+      Util::drawCircle(22);
     glPopMatrix();
   }
   drawCenterPeg();
