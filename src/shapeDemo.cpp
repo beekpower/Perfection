@@ -18,6 +18,8 @@
 
 int degreeToRotate = 0;
 
+Piece* piece1 = new Piece(10, 10, CIRCLE_FLOWER);
+
 void draw() {
   //Clear the whole screen
   glClear(GL_COLOR_BUFFER_BIT);
@@ -42,7 +44,7 @@ void draw() {
 }
 
 void drawPiece() {
-  Piece* piece1 = new Piece(10, 10, CIRCLE_FLOWER);
+  glClear(GL_COLOR_BUFFER_BIT);
   piece1->draw();
   glFlush();
 }
@@ -50,18 +52,20 @@ void drawPiece() {
 void processNormalKeys(unsigned char key, int x, int y) {
 
 	if (key == 'a') {
-    degreeToRotate+=2;
-    if (degreeToRotate > 359) {
-      degreeToRotate = 0;
-    }
+    // degreeToRotate+=2;
+    // if (degreeToRotate > 359) {
+    //   degreeToRotate = 0;
+    // }
+    piece1->rotate(1);
     glutPostRedisplay();
   }
 
   if (key == 's') {
-    degreeToRotate-=2;
-    if (degreeToRotate < 0) {
-      degreeToRotate = 359;
-    }
+    // degreeToRotate-=2;
+    // if (degreeToRotate < 0) {
+    //   degreeToRotate = 359;
+    // }
+        piece1->rotate(-1);
     glutPostRedisplay();
   }
 

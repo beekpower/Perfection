@@ -18,7 +18,7 @@ private:
 	pieceType type;
 
 public:
-	Piece(int x, int y, pieceType t);
+	Piece(int x, int y, int t);
 
 	/* Totally need to add varying color and translation to current x,y location here */
 	void draw();
