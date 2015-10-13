@@ -11,6 +11,7 @@
 #include "math.h"
 #include "stdio.h"
 #include "piece.h"
+#include "board.h"
 
 #define WINDOW_WIDTH 1000
 #define WINDOW_HEIGHT 500
@@ -19,57 +20,14 @@ int degreeToRotate = 0;
 
 Piece *pieces[25];
 Piece *selectedPiece;
-
-void drawBoard() {
-    // Main board
-    int boardOffset = 100; // height offset - the blue part of the board isn't centered vertically
-    glBegin(GL_QUADS);
-        glColor3f((float)210/255, (float)24/255, (float)26/255);
-        glVertex2f(-325,400 + (boardOffset/2));
-        glVertex2f(-325,-400 - (boardOffset/2));
-        glVertex2f(325,-400 - (boardOffset/2));
-        glVertex2f(325,400 + (boardOffset/2));
-    glEnd();
-    // Outline it so it looks good
-    glLineWidth(2);
-    glBegin(GL_LINE_STRIP);
-        glColor3f((float)0/255, (float)0/255, (float)0/255);
-        glVertex2f(-325,400 + (boardOffset/2));
-        glVertex2f(-325,-400 - (boardOffset/2));
-        glVertex2f(325,-400 - (boardOffset/2));
-        glVertex2f(325,400 + (boardOffset/2));
-        glVertex2f(-325,400 + (boardOffset/2));
-    glEnd();
-
-    // Main blue section
-    glBegin(GL_QUADS);
-        glColor3f((float)39/255, (float)116/255, (float)212/255);
-        glVertex2f(-300,300 - boardOffset);
-        glVertex2f(-300,-300 - boardOffset);
-        glVertex2f(300,-300 - boardOffset);
-        glVertex2f(300,300 - boardOffset);
-    glEnd();
-    // Outline it so it looks good
-    glLineWidth(2);
-    glBegin(GL_LINE_STRIP);
-        glColor3f((float)0/255, (float)0/255, (float)0/255);
-        glVertex2f(-300,300 - boardOffset);
-        glVertex2f(-300,-300 - boardOffset);
-        glVertex2f(300,-300 - boardOffset);
-        glVertex2f(300,300 - boardOffset);
-        glVertex2f(-300,300 - boardOffset);
-    glEnd();
-
-}
+Board *board;
 
 void draw() {
-
-
-
   //Clear the whole screen
   glClear(GL_COLOR_BUFFER_BIT);
     // Draw board
     drawBoard();
+    board->draw();
 
     // Draw shapes
     Shapes::drawRelativeBox();
@@ -119,6 +77,9 @@ void init(void) {
     glClear(GL_COLOR_BUFFER_BIT);
     glMatrixMode(GL_MODELVIEW);
 
+    // Initialize the board object
+    board = new Board(WINDOW_WIDTH, WINDOW_HEIGHT);
+
     // Initialize all piece objects
     int row = 0;
     for (int i = 0; i < 25; i++) {
@@ -136,7 +97,7 @@ void mouse(int button, int state, int x, int y) {
   switch (button) {
     case GLUT_LEFT_BUTTON:   //When something is left clicked
       if(state == GLUT_UP) {
-  
+
       }
       break;
   }
