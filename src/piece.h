@@ -14,11 +14,12 @@ class Piece
 private:
 	int loc_x;
 	int loc_y;
+	int rotation = 0;
 	pieceType type;
 
 public:
 	Piece(int x, int y, pieceType t);
-	
+
 	/* Totally need to add varying color and translation to current x,y location here */
 	void drawPiece();
 	int getLocX();
