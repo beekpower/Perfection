@@ -19,14 +19,16 @@
 int degreeToRotate = 0;
 
 Piece *pieces[25];
+Piece *selectedPiece;
 Board *board;
 
 void draw() {
   //Clear the whole screen
   glClear(GL_COLOR_BUFFER_BIT);
     // Draw board
+    drawBoard();
     board->draw();
-    
+
     // Draw shapes
     Shapes::drawRelativeBox();
     glPushMatrix();
@@ -74,10 +76,10 @@ void init(void) {
     //Initialy clear the screen
     glClear(GL_COLOR_BUFFER_BIT);
     glMatrixMode(GL_MODELVIEW);
-    
+
     // Initialize the board object
     board = new Board(WINDOW_WIDTH, WINDOW_HEIGHT);
-    
+
     // Initialize all piece objects
     int row = 0;
     for (int i = 0; i < 25; i++) {
@@ -85,9 +87,20 @@ void init(void) {
         if(((i+1)%5) == 0) {
             row++;
         }
-        
+
     }
 
+}
+
+/*Mouse event*/
+void mouse(int button, int state, int x, int y) {
+  switch (button) {
+    case GLUT_LEFT_BUTTON:   //When something is left clicked
+      if(state == GLUT_UP) {
+
+      }
+      break;
+  }
 }
 
 /*Main entry point for the progam*/
@@ -98,6 +111,7 @@ int main(int argc, char** argv) {
   glutInitWindowPosition(100, 150);                 //set the window position
   glutCreateWindow("Project 1 Shapes");                   //create the window and window name
   glutKeyboardFunc(processNormalKeys);
+  glutMouseFunc(mouse);                             //set the mouse event function
   glutDisplayFunc(draw);                     //set the redraw function                            //set the mouse event function
   init();                                           //init function
   glutMainLoop();                                   //enter the glut loop
