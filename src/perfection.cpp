@@ -10,21 +10,55 @@
 #include "util.h"
 #include "math.h"
 #include "stdio.h"
-#include "shapes.h"
+#include "piece.h"
 
 #define WINDOW_WIDTH 1000
 #define WINDOW_HEIGHT 500
 
 int degreeToRotate = 0;
 
+Piece *pieces[25];
+
 void drawBoard() {
+    // Main board
+    int boardOffset = 100; // height offset - the blue part of the board isn't centered vertically
     glBegin(GL_QUADS);
         glColor3f((float)210/255, (float)24/255, (float)26/255);
-        glVertex2f(-325,400);
-        glVertex2f(-325,-400);
-        glVertex2f(325,-400);
-        glVertex2f(325,400);
+        glVertex2f(-325,400 + (boardOffset/2));
+        glVertex2f(-325,-400 - (boardOffset/2));
+        glVertex2f(325,-400 - (boardOffset/2));
+        glVertex2f(325,400 + (boardOffset/2));
     glEnd();
+    // Outline it so it looks good
+    glLineWidth(2);
+    glBegin(GL_LINE_STRIP);
+        glColor3f((float)0/255, (float)0/255, (float)0/255);
+        glVertex2f(-325,400 + (boardOffset/2));
+        glVertex2f(-325,-400 - (boardOffset/2));
+        glVertex2f(325,-400 - (boardOffset/2));
+        glVertex2f(325,400 + (boardOffset/2));
+        glVertex2f(-325,400 + (boardOffset/2));
+    glEnd();
+    
+    // Main blue section
+    glBegin(GL_QUADS);
+        glColor3f((float)39/255, (float)116/255, (float)212/255);
+        glVertex2f(-300,300 - boardOffset);
+        glVertex2f(-300,-300 - boardOffset);
+        glVertex2f(300,-300 - boardOffset);
+        glVertex2f(300,300 - boardOffset);
+    glEnd();
+    // Outline it so it looks good
+    glLineWidth(2);
+    glBegin(GL_LINE_STRIP);
+        glColor3f((float)0/255, (float)0/255, (float)0/255);
+        glVertex2f(-300,300 - boardOffset);
+        glVertex2f(-300,-300 - boardOffset);
+        glVertex2f(300,-300 - boardOffset);
+        glVertex2f(300,300 - boardOffset);
+        glVertex2f(-300,300 - boardOffset);
+    glEnd();
+
 }
 
 void draw() {
@@ -40,15 +74,7 @@ void draw() {
     int row = 0;
     //Loop through each shape
     for (int i = 0; i < 25; i++) {
-      glColor3ub(230, 221, 42);
-      glPushMatrix();
-        glTranslatef(105 * (i % 5), -row * 105, 0);
-        glRotatef(degreeToRotate,0,0,1);
-        Shapes::drawShape(i);
-      glPopMatrix();
-      if (((i+1)%5) == 0) {
-        row++;
-      }
+        pieces[i]->draw();
     }
   glPopMatrix();
   glFlush();
@@ -79,15 +105,26 @@ void processNormalKeys(unsigned char key, int x, int y) {
 
 
 void init(void) {
-  //Set background color to white
-  glClearColor(1,1,1,0.0);
-  //Make thettons lines a bit thicker
-  glLineWidth(1.0);
-  //Setup the viewport
-  glOrtho(-1000, 1000, -500, 500, 1, -1);
-  //Initialy clear the screen
-  glClear(GL_COLOR_BUFFER_BIT);
-  glMatrixMode(GL_MODELVIEW);
+    //Set background color to white
+    glClearColor(1,1,1,0.0);
+    //Make thettons lines a bit thicker
+    glLineWidth(1.0);
+    //Setup the viewport
+    glOrtho(-1000, 1000, -500, 500, 1, -1);
+    //Initialy clear the screen
+    glClear(GL_COLOR_BUFFER_BIT);
+    glMatrixMode(GL_MODELVIEW);
+    
+    // Initialize all piece objects
+    int row = 0;
+    for (int i = 0; i < 25; i++) {
+        pieces[i] = new Piece(105 * (i % 5), -row * 105, i);
+        if(((i+1)%5) == 0) {
+            row++;
+        }
+        
+    }
+
 }
 
 /*Main entry point for the progam*/
