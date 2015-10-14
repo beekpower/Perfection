@@ -16,11 +16,14 @@ private:
     void drawHeader();
     void drawBody();
     void drawBackground();
+    bool on;
 
 public:
 	Board(int screenWidth, int screenHeight);
-  void checkInPlace(Piece *pieces[]);
+    void checkInPlace(Piece *pieces[]);
 	void draw();
+    void turnOnGame();
+    void turnOffGame();
 };
 
 #endif

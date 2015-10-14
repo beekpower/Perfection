@@ -1,10 +1,21 @@
+#ifdef __linux__
+#include "GL/freeglut.h"
+#include "GL/gl.h"
+#elif _WIN32
+// Put your windows imports here
+#elif __APPLE__
+#include <freeglut.h>
+#endif
+
 #include "board.h"
+
 
 Board::Board(int screenWidth, int screenHeight)
 {
 	this->screenWidth = screenWidth;
 	this->screenHeight = screenHeight;
-
+    on = true;
+    
     // Create all the board piece slots
     // Initialize all piece objects
     int row = 0;
@@ -33,6 +44,14 @@ void Board::draw()
         glColor3ub(230, 221, 42);
         boardPiecesSlot[i]->draw();
     }
+}
+
+void Board::turnOnGame() {
+    on = true;
+}
+
+void Board::turnOffGame() {
+    on = false;
 }
 
 void Board::drawBackground() {
@@ -153,6 +172,38 @@ void Board::drawHeader() {
         glVertex2f(75,325 - boardOffset);
         glVertex2f(75,375 - boardOffset);
     glEnd();
+    
+    if(on) {
+        glBegin(GL_BITMAP);
+            glColor3ub(0, 0, 0);
+            glRasterPos2i(15, 340 - boardOffset);
+            glutBitmapString(GLUT_BITMAP_HELVETICA_18, (const unsigned char*)"ON");
+        glEnd();
+        
+        // Switch section
+        glBegin(GL_QUADS);
+            glColor3f((float)0/255, (float)0/255, (float)0/255);
+            glVertex2f(-50,370 - boardOffset);
+            glVertex2f(-50,330 - boardOffset);
+            glVertex2f(-70,330 - boardOffset);
+            glVertex2f(-70,370 - boardOffset);
+        glEnd();
+    } else {
+        glBegin(GL_BITMAP);
+            glColor3ub(0, 0, 0);
+            glRasterPos2i(-65, 340 - boardOffset);
+            glutBitmapString(GLUT_BITMAP_HELVETICA_18, (const unsigned char*)"OFF");
+        glEnd();
+        
+        // Switch section
+        glBegin(GL_QUADS);
+            glColor3f((float)0/255, (float)0/255, (float)0/255);
+            glVertex2f(50,370 - boardOffset);
+            glVertex2f(50,330 - boardOffset);
+            glVertex2f(70,330 - boardOffset);
+            glVertex2f(70,370 - boardOffset);
+        glEnd();
+    }
     
     // Outline of entire header
     glBegin(GL_LINE_STRIP);
