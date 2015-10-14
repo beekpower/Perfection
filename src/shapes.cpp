@@ -240,7 +240,11 @@ void Shapes::drawHexagon(bool isPiece) {
 
 void Shapes::drawRectangle(bool isPiece) {
   glBegin(GL_POLYGON);
-    glColor3ub(230, 221, 42);
+    if(isPiece) {
+        glColor3ub(230, 221, 42);
+    } else {
+        glColor3ub(64, 101, 147);
+    }
     glVertex2i(-50, 35);
     glVertex2i(50, 35);
     glVertex2i(50, -35);
@@ -263,7 +267,11 @@ void Shapes::drawRightTriangle(bool isPiece) {
   glPushMatrix();
     glTranslatef(25, -25, 0);
     glBegin(GL_POLYGON);
-    glColor3ub(230, 221, 42);
+    if(isPiece) {
+        glColor3ub(230, 221, 42);
+    } else {
+        glColor3ub(64, 101, 147);
+    }
       glVertex2i(-50, 50);
       glVertex2i(25, 50);
       glVertex2i(-50, -25);
@@ -286,6 +294,11 @@ void Shapes::drawRightTriangle(bool isPiece) {
 
 void Shapes::drawOctogon(bool isPiece) {
   glBegin(GL_POLYGON);
+    if(isPiece) {
+        glColor3ub(230, 221, 42);
+    } else {
+        glColor3ub(64, 101, 147);
+    }
     glVertex2i(0, 50);
     glVertex2i(37, 37);
     glVertex2i(50, 0);
@@ -314,6 +327,11 @@ void Shapes::drawOctogon(bool isPiece) {
 
 void Shapes::drawCup(bool isPiece) {
   glBegin(GL_POLYGON);
+    if(isPiece) {
+        glColor3ub(230, 221, 42);
+    } else {
+        glColor3ub(64, 101, 147);
+    }
     glVertex2i(-50, 50);
     glVertex2i(50, 50);
     glVertex2i(30, -50);
@@ -349,7 +367,11 @@ void Shapes::drawThinCylinder(bool isPiece) {
   glPopMatrix();
 
   glBegin(GL_POLYGON);
-    glColor3ub(230, 221, 42);
+    if(isPiece) {
+        glColor3ub(230, 221, 42);
+    } else {
+        glColor3ub(64, 101, 147);
+    }
     glVertex2i(-43, 7);
     glVertex2i(-7, 43);
     glVertex2i(44, -8);
@@ -381,7 +403,11 @@ void Shapes::drawThickCylinder(bool isPiece) {
     glPopMatrix();
 
     glBegin(GL_POLYGON);
-      glColor3ub(230, 221, 42);
+        if(isPiece) {
+            glColor3ub(230, 221, 42);
+        } else {
+            glColor3ub(64, 101, 147);
+        }
       glVertex2i(-43, -7);
       glVertex2i(8, 43);
       glVertex2i(42, 8);
@@ -412,7 +438,11 @@ void Shapes::drawThickCross(bool isPiece) {
   glPushMatrix();
     glRotatef(45,0,0,1.0);
     glBegin(GL_POLYGON);
-      glColor3ub(230, 221, 42);
+    if(isPiece) {
+        glColor3ub(230, 221, 42);
+    } else {
+        glColor3ub(64, 101, 147);
+    }
       glVertex2i(-48, 20);
       glVertex2i(48, 20);
       glVertex2i(48, -20);
@@ -423,7 +453,11 @@ void Shapes::drawThickCross(bool isPiece) {
   glPushMatrix();
     glRotatef(-45,0,0,1.0);
     glBegin(GL_POLYGON);
-      glColor3ub(230, 221, 42);
+    if(isPiece) {
+        glColor3ub(230, 221, 42);
+    } else {
+        glColor3ub(64, 101, 147);
+    }
       glVertex2i(-48, 20);
       glVertex2i(48, 20);
       glVertex2i(48, -20);
@@ -460,7 +494,11 @@ void Shapes::drawThickCross(bool isPiece) {
 
 void Shapes::drawRhombus(bool isPiece) {
   glBegin(GL_POLYGON);
-    glColor3ub(230, 221, 42);
+    if(isPiece) {
+        glColor3ub(230, 221, 42);
+    } else {
+        glColor3ub(64, 101, 147);
+    }
     glVertex2i(-50, 50);
     glVertex2i(25, 25);
     glVertex2i(50, -50);
@@ -481,7 +519,11 @@ void Shapes::drawRhombus(bool isPiece) {
 
 void Shapes::drawKite(bool isPiece) {
   glBegin(GL_POLYGON);
-    glColor3ub(230, 221, 42);
+    if(isPiece) {
+        glColor3ub(230, 221, 42);
+    } else {
+        glColor3ub(64, 101, 147);
+    }
     glVertex2i(-50, 50);
     glVertex2i(20, 20);
     glVertex2i(30, -30);
@@ -508,8 +550,12 @@ void Shapes::draw5Star(bool isPiece) {
       glRotatef(degree,0,0,1);
       glTranslatef(-20, 0, 0);
       glBegin(GL_POLYGON);
-        glColor3ub(230, 221, 42);
-        glVertex2i(0, 15.5);
+      if(isPiece) {
+          glColor3ub(230, 221, 42);
+      } else {
+          glColor3ub(64, 101, 147);
+      }
+      glVertex2i(0, 15.5);
         glVertex2i(0, -15.5);
         glVertex2i(-31, 0);
       glEnd();
@@ -542,7 +588,11 @@ void Shapes::draw6Star(bool isPiece) {
       glRotatef(degree,0,0,1);
       glTranslatef(0, 21, 0);
       glBegin(GL_POLYGON);
-        glColor3ub(230, 221, 42);
+      if(isPiece) {
+          glColor3ub(230, 221, 42);
+      } else {
+          glColor3ub(64, 101, 147);
+      }
         glVertex2i(0, 25);
         glVertex2i(-12.5, 0);
         glVertex2i(12.5, 0);
@@ -572,7 +622,11 @@ void Shapes::drawThinCross(bool isPiece) {
   glPushMatrix();
     glRotatef(55,0,0,1.0);
     glBegin(GL_POLYGON);
-      glColor3ub(230, 221, 42);
+    if(isPiece) {
+        glColor3ub(230, 221, 42);
+    } else {
+        glColor3ub(64, 101, 147);
+    }
       glVertex2i(-48, 7);
       glVertex2i(48, 7);
       glVertex2i(48, -7);
@@ -583,7 +637,11 @@ void Shapes::drawThinCross(bool isPiece) {
   glPushMatrix();
     glRotatef(-55,0,0,1.0);
     glBegin(GL_POLYGON);
-      glColor3ub(230, 221, 42);
+    if(isPiece) {
+        glColor3ub(230, 221, 42);
+    } else {
+        glColor3ub(64, 101, 147);
+    }
       glVertex2i(-48, 7);
       glVertex2i(48, 7);
       glVertex2i(48, -7);
@@ -626,7 +684,11 @@ void Shapes::drawFlower(bool isPiece) {
       glRotatef(degree,0,0,1);
       glTranslatef(-20, 0, 0);
       glBegin(GL_POLYGON);
-        glColor3ub(230, 221, 42);
+      if(isPiece) {
+          glColor3ub(230, 221, 42);
+      } else {
+          glColor3ub(64, 101, 147);
+      }
         glVertex2i(0, 15.5);
         glVertex2i(0, -15.5);
         glVertex2i(-25, -15.5);
@@ -659,8 +721,11 @@ void Shapes::drawQuarterCircle(bool isPiece) {
     glTranslatef(-30, -30, 0);
     Util::drawCircle(75, 0, 90, isPiece);
     glBegin(GL_POLYGON);
-      glColor3ub(230, 221, 42);
-      glVertex2i(0, 77);
+    if(isPiece) {
+        glColor3ub(230, 221, 42);
+    } else {
+        glColor3ub(64, 101, 147);
+    }      glVertex2i(0, 77);
       glVertex2i(0, 0);
       glVertex2i(77,0);
     glEnd();
@@ -683,7 +748,11 @@ void Shapes::drawQuarterCircle(bool isPiece) {
 
 void Shapes::drawQuad(bool isPiece) {
   glBegin(GL_POLYGON);
-    glColor3ub(230, 221, 42);
+    if(isPiece) {
+        glColor3ub(230, 221, 42);
+    } else {
+        glColor3ub(64, 101, 147);
+    }
     glVertex2i(50, 50);
     glVertex2i(-35, 50);
     glVertex2i(-50, -50);
@@ -718,14 +787,22 @@ void Shapes::drawCircleFlower(bool isPiece) {
 
 void Shapes::drawT(bool isPiece) {
   glBegin(GL_POLYGON);
-    glColor3ub(230, 221, 42);
+    if(isPiece) {
+        glColor3ub(230, 221, 42);
+    } else {
+        glColor3ub(64, 101, 147);
+    }
     glVertex2i(50, -15);
     glVertex2i(-50, -15);
     glVertex2i(-50, -50);
     glVertex2i(50, -50);
   glEnd();
   glBegin(GL_POLYGON);
-    glColor3ub(230, 221, 42);
+    if(isPiece) {
+        glColor3ub(230, 221, 42);
+    } else {
+        glColor3ub(64, 101, 147);
+    }
     glVertex2i(20, -15);
     glVertex2i(-20, -15);
     glVertex2i(-20, 50);
