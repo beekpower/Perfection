@@ -30,6 +30,7 @@ public:
 	bool clicked(int x, int y);
 	void setLoc(int x, int y);
 	int getType();
+	bool isInSlot(BoardPieceSlot *slot);
 	void setInPlace(bool status);
 	bool isInPlace();
 	int getLocX();

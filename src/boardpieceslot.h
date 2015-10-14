@@ -11,12 +11,14 @@ class BoardPieceSlot
 private:
 	int x;
 	int y;
-    int shape;
+  int shape;
 
 public:
 	BoardPieceSlot(int x, int y, int shape);
 	void draw();
-	bool pieceInSlot(Piece *testPiece);
+	int getX();
+	int getY();
+	int getShape();
 };
 
 #endif

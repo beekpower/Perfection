@@ -1,4 +1,5 @@
 #include "piece.h"
+#include "boardpieceslot.h"
 
 
 Piece::Piece(int l_x, int l_y, int t)
@@ -41,6 +42,18 @@ void Piece::draw()
     } else if(rotationVelocity < 0) {
         rotationVelocity++;
     }
+}
+
+bool Piece::isInSlot(BoardPieceSlot *slot)
+{
+	if (slot->getShape() == type) {
+		if (loc_x < (slot->getX() + 3) && x > (testPiece->getX() - 3) && y < (testPiece->getY() + 3) && y > (testPiece->getY() - 3)) {
+			return true;
+			printf("piece in right place");
+    } else {
+			return false;
+		}
+	}
 }
 
 void Piece::setInPlace(bool status)
