@@ -4,6 +4,16 @@ Board::Board(int screenWidth, int screenHeight)
 {
 	this->screenWidth = screenWidth;
 	this->screenHeight = screenHeight;
+    
+    // Create all the board piece slots
+    // Initialize all piece objects
+    int row = 0;
+    for (int i = 0; i < 25; i++) {
+        boardPiecesSlot[i] = new BoardPieceSlot(-240 + (120 *(i % 5)), 140 - (row * 120), i);
+        if(((i+1)%5) == 0) {
+            row++;
+        }
+    }
 }
 
 void Board::draw()
@@ -11,6 +21,10 @@ void Board::draw()
     this->drawBackground();
     this->drawBody();
     this->drawHeader();
+    for (int i = 0; i < 25; i++) {
+        glColor3ub(230, 221, 42);
+        boardPiecesSlot[i]->draw();
+    }
 }
 
 void Board::drawBackground() {
