@@ -180,7 +180,7 @@ int Shapes::symmetricalDegrees(int shape) {
 void Shapes::drawCircle(bool isPiece)
 {
   Util::drawCircle(50, 0, 360, isPiece);
-    if(!isPiece) {
+    if(isPiece) {
         drawCenterPeg();
     }
 }
@@ -191,14 +191,14 @@ void Shapes::drawHalfCircle(bool isPiece) {
         Util::drawCircle(48, 45, 225, isPiece);
     glPopMatrix();
 
-    if(!isPiece) {
+    if(isPiece) {
         drawCenterPeg();
     }
 }
 
 void Shapes::drawSquare(bool isPiece) {
   Util::drawPolygon(4, 50, isPiece);
-    if(!isPiece) {
+    if(isPiece) {
         drawCenterPeg();
     }
 }
@@ -212,7 +212,7 @@ void Shapes::drawOffsetCircle1(bool isPiece) {
     glTranslatef(11, 13, 0);
     Util::drawCircle(38, 225, 45, isPiece);
   glPopMatrix();
-    if(!isPiece) {
+    if(isPiece) {
         drawCenterPeg();
     }
 }
@@ -226,14 +226,14 @@ void Shapes::drawOffsetCircle2(bool isPiece) {
     glTranslatef(-12, 12, 0);
     Util::drawCircle(38, 135, 315,isPiece);
   glPopMatrix();
-    if(!isPiece) {
+    if(isPiece) {
         drawCenterPeg();
     }
 }
 
 void Shapes::drawHexagon(bool isPiece) {
   Util::drawPolygon(6, 50, isPiece);
-    if(!isPiece) {
+    if(isPiece) {
         drawCenterPeg();
     }
 }
@@ -255,7 +255,6 @@ void Shapes::drawRectangle(bool isPiece) {
         glVertex2i(50, -35);
         glVertex2i(-50, -35);
         glEnd();
-    } else {
         drawCenterPeg();
     }
 }
@@ -281,7 +280,6 @@ void Shapes::drawRightTriangle(bool isPiece) {
         glVertex2i(-50, -25);
         glEnd();
         glPopMatrix();
-    } else {
         drawCenterPeg();
     }
 }
@@ -310,7 +308,6 @@ void Shapes::drawOctogon(bool isPiece) {
             glVertex2i(-50, 0);
             glVertex2i(-37, 37);
         glEnd();
-    } else {
         drawCenterPeg();
     }
 }
@@ -330,14 +327,13 @@ void Shapes::drawCup(bool isPiece) {
         glVertex2i(30, -50);
         glVertex2i(-30, -50);
         glEnd();
-    } else {
         drawCenterPeg();
     }
 }
 
 void Shapes::drawEqualTriangle(bool isPiece) {
   Util::drawPolygon(3, 50, isPiece);
-    if(!isPiece) {
+    if(isPiece) {
         drawCenterPeg();
     }
 }
@@ -368,7 +364,6 @@ void Shapes::drawThinCylinder(bool isPiece) {
         glVertex2i(44, -8);
         glVertex2i(8, -44);
         glEnd();
-    } else {
         drawCenterPeg();
     }
 }
@@ -402,14 +397,13 @@ void Shapes::drawThickCylinder(bool isPiece) {
         glVertex2i(42, 8);
         glVertex2i(-4, -45);
         glEnd();
-    } else {
         drawCenterPeg();
     }
 }
 
 void Shapes::drawPentagon(bool isPiece) {
   Util::drawPolygon(5, 50, isPiece);
-    if(!isPiece) {
+    if(isPiece) {
         drawCenterPeg();
     }
 }
@@ -460,8 +454,6 @@ void Shapes::drawThickCross(bool isPiece) {
             glVertex2i(-48, -20);
         glEnd();
         glPopMatrix();
-
-    } else {
         drawCenterPeg();
     }
 }
@@ -483,7 +475,6 @@ void Shapes::drawRhombus(bool isPiece) {
             glVertex2i(50, -50);
             glVertex2i(-25, -25);
         glEnd();
-    } else {
         drawCenterPeg();
     }
 }
@@ -505,7 +496,6 @@ void Shapes::drawKite(bool isPiece) {
             glVertex2i(30, -30);
             glVertex2i(-20, -20);
         glEnd();
-    } else {
         drawCenterPeg();
     }
 }
@@ -540,7 +530,6 @@ void Shapes::draw5Star(bool isPiece) {
             glEnd();
             glPopMatrix();
         }
-    } else {
         drawCenterPeg();
     }
 }
@@ -575,7 +564,6 @@ void Shapes::draw6Star(bool isPiece) {
             glEnd();
             glPopMatrix();
         }
-    } else {
         drawCenterPeg();
     }
 }
@@ -625,8 +613,8 @@ void Shapes::drawThinCross(bool isPiece) {
             glVertex2i(-48, -7);
         glEnd();
         glPopMatrix();
-    } else {
         drawCenterPeg();
+
     }
 }
 
@@ -662,7 +650,6 @@ void Shapes::drawFlower(bool isPiece) {
             glEnd();
             glPopMatrix();
         }
-    } else {
         drawCenterPeg();
     }
 }
@@ -690,7 +677,6 @@ void Shapes::drawQuarterCircle(bool isPiece) {
             glVertex2i(77,0);
         glEnd();
         glPopMatrix();
-    } else {
         drawCenterPeg();
     }
 }
@@ -711,7 +697,6 @@ void Shapes::drawQuad(bool isPiece) {
             glVertex2i(-50, -50);
             glVertex2i(35, -50);
         glEnd();
-    } else {
         drawCenterPeg();
     }
 }
@@ -726,7 +711,7 @@ void Shapes::drawCircleFlower(bool isPiece) {
     glPopMatrix();
   }
 
-    if(!isPiece) {
+    if(isPiece) {
         drawCenterPeg();
     }
 }
@@ -761,7 +746,6 @@ void Shapes::drawT(bool isPiece) {
             glVertex2i(-20, 50);
             glVertex2i(20, 50);
         glEnd();
-    } else {
         drawCenterPeg();
     }
 }
