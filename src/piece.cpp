@@ -45,8 +45,10 @@ void Piece::draw()
 
 void Piece::rotate(int degrees)
 {
-    // We must increase the current rotation velocity
-    rotationVelocity += degrees * 7;
+    // We must increase the current rotation velocity, only if it's below a threshold (don't want the piece spinning too much)
+    if(abs(rotationVelocity) < 10) {
+        rotationVelocity += degrees * 7;
+    }
 }
 
 bool Piece::clicked(int x, int y) {
