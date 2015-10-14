@@ -7,16 +7,21 @@
     #include <freeglut.h>
 #endif
 
+#include <stdio.h>
+
+
 #include "util.h"
 #include "math.h"
 #include "stdio.h"
 #include "piece.h"
 #include "board.h"
 
-#define WINDOW_WIDTH 1000
-#define WINDOW_HEIGHT 500
+#define WINDOW_WIDTH 2000
+#define WINDOW_HEIGHT 1000
 
 int degreeToRotate = 0;
+
+int mouseX, mouseY;
 
 Piece *pieces[25];
 Piece *selectedPiece;
@@ -26,42 +31,38 @@ void draw() {
   //Clear the whole screen
   glClear(GL_COLOR_BUFFER_BIT);
     // Draw board
-    drawBoard();
     board->draw();
 
     // Draw shapes
     Shapes::drawRelativeBox();
-    glPushMatrix();
-    glTranslatef(-920, 420, 0);
     int row = 0;
+    if (selectedPiece != NULL) {
+      selectedPiece->setLoc(mouseX, mouseY);
+    }
+
+
     //Loop through each shape
     for (int i = 0; i < 25; i++) {
-        pieces[i]->draw();
+      pieces[i]->draw();
     }
-  glPopMatrix();
+
+
   glFlush();
 }
 
 void processNormalKeys(unsigned char key, int x, int y) {
 
-	if (key == 'a') {
-    degreeToRotate+=2;
-    if (degreeToRotate > 359) {
-      degreeToRotate = 0;
+  if (selectedPiece != NULL) {
+    if (key == 'a') {
+      selectedPiece->rotate(1);
+      glutPostRedisplay();
     }
-    glutPostRedisplay();
-  }
 
-  if (key == 's') {
-    degreeToRotate-=2;
-    if (degreeToRotate < 0) {
-      degreeToRotate = 359;
+    if (key == 's') {
+      selectedPiece->rotate(-1);
+      glutPostRedisplay();
     }
-    glutPostRedisplay();
   }
-
-
-
 }
 
 
@@ -72,7 +73,7 @@ void init(void) {
     //Make thettons lines a bit thicker
     glLineWidth(1.0);
     //Setup the viewport
-    glOrtho(-1000, 1000, -500, 500, 1, -1);
+    glOrtho(-(WINDOW_WIDTH/2), WINDOW_WIDTH/2, -(WINDOW_HEIGHT/2), WINDOW_HEIGHT/2, 1, -1);
     //Initialy clear the screen
     glClear(GL_COLOR_BUFFER_BIT);
     glMatrixMode(GL_MODELVIEW);
@@ -94,13 +95,35 @@ void init(void) {
 
 /*Mouse event*/
 void mouse(int button, int state, int x, int y) {
+
+  x = x - (WINDOW_WIDTH / 2);
+  y = -(y - (WINDOW_HEIGHT / 2));
+
   switch (button) {
     case GLUT_LEFT_BUTTON:   //When something is left clicked
       if(state == GLUT_UP) {
-
+        if (selectedPiece == NULL) {
+          for (int i = 0; i < 25; i++) {
+            if (pieces[i]->clicked(x, y))
+            {
+              selectedPiece = pieces[i];
+              break;
+            }
+          }
+        } else {
+          selectedPiece = NULL;
+        }
       }
       break;
   }
+
+  glutPostRedisplay();
+}
+
+void mouseMove(int x, int y) {
+  mouseX = x - (WINDOW_WIDTH / 2);
+  mouseY = -(y - (WINDOW_HEIGHT / 2));
+  glutPostRedisplay();
 }
 
 /*Main entry point for the progam*/
@@ -112,6 +135,7 @@ int main(int argc, char** argv) {
   glutCreateWindow("Project 1 Shapes");                   //create the window and window name
   glutKeyboardFunc(processNormalKeys);
   glutMouseFunc(mouse);                             //set the mouse event function
+  glutPassiveMotionFunc(mouseMove);
   glutDisplayFunc(draw);                     //set the redraw function                            //set the mouse event function
   init();                                           //init function
   glutMainLoop();                                   //enter the glut loop

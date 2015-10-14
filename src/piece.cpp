@@ -29,6 +29,20 @@ void Piece::rotate(int degrees)
 	}
 }
 
+bool Piece::clicked(int x, int y) {
+	if (x > (loc_x - 50) && x < (loc_x + 50) && y > (loc_y - 50) && y < (loc_y + 50)) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
+void Piece::setLoc(int x, int y)
+{
+  loc_x = x;
+	loc_y = y;
+}
+
 int Piece::getLocX()
 {
 	return loc_x;

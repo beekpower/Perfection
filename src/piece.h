@@ -23,6 +23,8 @@ public:
 	/* Totally need to add varying color and translation to current x,y location here */
 	void draw();
 	void rotate(int degrees);
+	bool clicked(int x, int y);
+	void setLoc(int x, int y);
 	int getLocX();
 	int getLocY();
 };
