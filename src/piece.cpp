@@ -43,6 +43,16 @@ void Piece::draw()
     }
 }
 
+void Piece::setInPlace(bool status)
+{
+	inPlace = status;
+}
+
+bool Piece::isInPlace()
+{
+	return inPlace;
+}
+
 void Piece::rotate(int degrees)
 {
     // We must increase the current rotation velocity, only if it's below a threshold (don't want the piece spinning too much)

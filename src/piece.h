@@ -18,7 +18,8 @@ private:
 	int loc_y;
 	int rotation;
 	int type;
-    int rotationVelocity;
+  int rotationVelocity;
+	bool inPlace;
 
 public:
 	Piece(int x, int y, int t);
@@ -29,6 +30,8 @@ public:
 	bool clicked(int x, int y);
 	void setLoc(int x, int y);
 	int getType();
+	void setInPlace(bool status);
+	bool isInPlace();
 	int getLocX();
 	int getLocY();
 	void restoreInitialLocation();
