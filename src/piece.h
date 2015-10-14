@@ -12,6 +12,8 @@ enum pieceType {CIRCLE, HALF_CIRCLE, SQUARE, OFFSET_CIRCLE_1, OFFSET_CIRCLE2, HE
 class Piece
 {
 private:
+	int initialX;
+	int initialY;
 	int loc_x;
 	int loc_y;
 	int rotation;
@@ -27,6 +29,7 @@ public:
 	void setLoc(int x, int y);
 	int getLocX();
 	int getLocY();
+	void restoreInitialLocation();
 };
 
 #endif

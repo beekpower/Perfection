@@ -17,6 +17,7 @@ class Util {
     void static drawCircle(int radius, int startDegree, int endDegree, bool drawBorder);
     void static drawCircle(int radius, bool drawBorder);
     void static drawPolygon(int n, int radius, bool drawBorder);
+    int static randomNumber(int min, int max);
 };
 
 #endif

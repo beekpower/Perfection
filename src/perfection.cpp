@@ -8,6 +8,10 @@
 #endif
 
 #include <stdio.h>
+#include <stdlib.h>
+
+
+#include <ctime>
 
 
 #include "util.h"
@@ -34,18 +38,15 @@ void draw() {
     board->draw();
 
     // Draw shapes
-    Shapes::drawRelativeBox();
     int row = 0;
     if (selectedPiece != NULL) {
       selectedPiece->setLoc(mouseX, mouseY);
     }
 
-
     //Loop through each shape
     for (int i = 0; i < 25; i++) {
       pieces[i]->draw();
     }
-
 
   glFlush();
 }
@@ -109,6 +110,7 @@ void mouse(int button, int state, int x, int y) {
             }
           }
         } else {
+          selectedPiece->restoreInitialLocation();
           selectedPiece = NULL;
         }
       }
@@ -126,6 +128,7 @@ void mouseMove(int x, int y) {
 
 /*Main entry point for the progam*/
 int main(int argc, char** argv) {
+  srand(time(NULL)); //setup random seed
   glutInit(&argc, argv);                           //init glut
   glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);     //set display mode
   glutInitWindowSize(WINDOW_WIDTH, WINDOW_HEIGHT); //set the window size

@@ -4,7 +4,7 @@ Board::Board(int screenWidth, int screenHeight)
 {
 	this->screenWidth = screenWidth;
 	this->screenHeight = screenHeight;
-    
+
     // Create all the board piece slots
     // Initialize all piece objects
     int row = 0;
@@ -78,7 +78,7 @@ void Board::drawHeader() {
         glVertex2f(300,325 - boardOffset);
         glVertex2f(300,500 - boardOffset);
     glEnd();
-    
+
     // Outline it so it looks good
     glLineWidth(2);
     glBegin(GL_LINE_STRIP);

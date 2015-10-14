@@ -1,11 +1,14 @@
 #include "piece.h"
 
+
 Piece::Piece(int l_x, int l_y, int t)
 {
-	loc_x = l_x;
-	loc_y = l_y;
+	rotation = Util::randomNumber(0, 360);
+	initialX = Util::randomNumber(-1000, -300);
+	initialY = Util::randomNumber(-400, 400);
+	loc_x = initialX;
+	loc_y = initialY;
 	type = t;
-	rotation = 0;
 }
 
 //Will incorporate the added features from header
@@ -35,6 +38,11 @@ bool Piece::clicked(int x, int y) {
 	} else {
 		return false;
 	}
+}
+
+void Piece::restoreInitialLocation() {
+	loc_x = initialX;
+	loc_y = initialY;
 }
 
 void Piece::setLoc(int x, int y)

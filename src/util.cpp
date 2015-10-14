@@ -1,5 +1,9 @@
 #include "util.h"
 
+int Util::randomNumber(int min, int max) {
+  return min + (rand() % (int)(max - min + 1));
+}
+
 void Util::drawCircle(int radius, int startDegree, int endDegree, bool drawBorder) {
   glBegin(GL_POLYGON);
   glColor3ub(230, 221, 42);
@@ -11,7 +15,7 @@ void Util::drawCircle(int radius, int startDegree, int endDegree, bool drawBorde
       }
     }
   glEnd();
-    
+
 
     if(drawBorder) {
         glBegin(GL_LINE_LOOP);
@@ -38,7 +42,7 @@ void Util::drawCircle(int radius, bool drawBorder) {
       }
     }
   glEnd();
-    
+
     if(drawBorder) {
         glBegin(GL_LINE_LOOP);
         glColor3ub(0, 0, 0);
@@ -64,7 +68,7 @@ void Util::drawPolygon(int n, int radius, bool drawBorder) {
       angle += angleIncrement;
     }
   glEnd();
-    
+
     if(drawBorder) {
         glBegin(GL_LINE_LOOP);
         glColor3ub(0, 0, 0);
