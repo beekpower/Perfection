@@ -136,9 +136,25 @@ void Board::drawHeader() {
         glVertex2f(300,325 - boardOffset);
         glVertex2f(300,500 - boardOffset);
     glEnd();
-
-    // Outline it so it looks good
+    
+    // Switch section
+    glBegin(GL_QUADS);
+        glColor3f((float)210/255, (float)24/255, (float)26/255);
+        glVertex2f(-75,375 - boardOffset);
+        glVertex2f(-75,325 - boardOffset);
+        glVertex2f(75,325 - boardOffset);
+        glVertex2f(75,375 - boardOffset);
+    glEnd();
     glLineWidth(2);
+    glBegin(GL_LINE_LOOP);
+        glColor3ub(230, 221, 42);
+        glVertex2f(-75,375 - boardOffset);
+        glVertex2f(-75,325 - boardOffset);
+        glVertex2f(75,325 - boardOffset);
+        glVertex2f(75,375 - boardOffset);
+    glEnd();
+    
+    // Outline of entire header
     glBegin(GL_LINE_STRIP);
         glColor3ub(230, 221, 42);
         glVertex2f(-300,500 - boardOffset);
