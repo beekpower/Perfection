@@ -22,7 +22,7 @@ bool BoardPieceSlot::pieceInSlot(Piece *testPiece)
 {
   if (testPiece->getType() == shape) {
 		if ((x + 3) > testPiece->getLocX() && (x - 3) < testPiece->getLocX() && (y + 3) > testPiece->getLocY() && (y - 3) < testPiece->getLocY()) {
-			testPiece.setLoc(x, y);
+			testPiece->setLoc(x, y);
 			printf("piece in right place");
     }
 
