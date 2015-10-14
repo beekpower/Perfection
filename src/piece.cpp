@@ -4,8 +4,15 @@
 Piece::Piece(int l_x, int l_y, int t)
 {
 	rotation = Util::randomNumber(0, 360);
-	initialX = Util::randomNumber(-1000, -300);
-	initialY = Util::randomNumber(-400, 400);
+    // Set the position of this piece to a random location
+    if(Util::randomNumber(1, 2) == 1) {
+        // Piece will be on a random X on the right side
+        initialX = Util::randomNumber(525, 100);
+    } else {
+        // Piece will be on a random X on the left side
+        initialX = Util::randomNumber(-925, -400);
+    }
+    initialY = Util::randomNumber(-400, 400);
 	loc_x = initialX;
 	loc_y = initialY;
 	type = t;
