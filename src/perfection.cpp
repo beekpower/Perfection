@@ -134,7 +134,6 @@ void mouse(int button, int state, int x, int y) {
 void mouseMove(int x, int y) {
     mouseX = x - (WINDOW_WIDTH / 2);
     mouseY = -(y - (WINDOW_HEIGHT / 2));
-    board->checkInPlace(pieces);
     glutPostRedisplay();
 }
 

@@ -20,14 +20,6 @@ Board::Board(int screenWidth, int screenHeight, BoardPieceSlot *boardpieceSlotAr
     on = true;
 }
 
-void Board::checkInPlace(Piece* pieces[])
-{
-  for (int i = 0; i < 25; i++)
-	{
-		boardPiecesSlot[i]->pieceInSlot(pieces[i]);
-	}
-}
-
 void Board::draw()
 {
     this->drawBackground();

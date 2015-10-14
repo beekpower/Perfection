@@ -4,6 +4,7 @@
 #define BOARD_H
 
 #include "shapes.h"
+#include "piece.h"
 #include "boardpieceslot.h"
 
 class Board
@@ -20,7 +21,6 @@ private:
 
 public:
 	Board(int screenWidth, int screenHeight, BoardPieceSlot *boardpieceSlotArray[]);
-    void checkInPlace(Piece *pieces[]);
 	void draw();
     void turnOnGame();
     void turnOffGame();

@@ -3,7 +3,6 @@
 #ifndef BOARDPIECESLOT_H
 #define BOARDPIECESLOT_H
 
-#include "piece.h"
 #include <stdio.h>
 
 class BoardPieceSlot
