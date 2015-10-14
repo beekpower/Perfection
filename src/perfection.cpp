@@ -65,8 +65,6 @@ void processNormalKeys(unsigned char key, int x, int y) {
   }
 }
 
-
-
 void init(void) {
     //Set background color to white
     glClearColor(1,1,1,0.0);
