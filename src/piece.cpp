@@ -46,15 +46,15 @@ void Piece::draw()
 
 bool Piece::isInSlot(BoardPieceSlot *slot)
 {
+	const int thresh = 3;
 	if (slot->getShape() == type) {
-		if (loc_x < (slot->getX() + 3) && loc_x > (slot->getX() - 3) && loc_y < (slot->getY() + 3) && loc_y > (slot->getY() - 3)) {
+		if (loc_x < (slot->getX() + thresh) && loc_x > (slot->getX() - thresh) && loc_y < (slot->getY() + thresh) && loc_y > (slot->getY() - thresh)) {
 			return true;
-			printf("piece in right place");
     } else {
 			return false;
 		}
     } else {
-            return false;
+      return false;
     }
 }
 
