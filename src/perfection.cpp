@@ -106,8 +106,8 @@ void init(void) {
 /*Mouse event*/
 void mouse(int button, int state, int x, int y) {
 
-    x = x - (WINDOW_WIDTH / 2);
-    y = -(y - (WINDOW_HEIGHT / 2));
+   x = ((float)x - ((float)WINDOW_WIDTH / 2.0)) * ((float)WINDOW_WIDTH * 2.0 / 2000.0);
+   y = (-((float)y - ((float)WINDOW_HEIGHT / 2.0))) * ((float)WINDOW_HEIGHT * 2.0 / 1000.0);
 
     switch (button) {
         case GLUT_LEFT_BUTTON:   //When something is left clicked
@@ -136,8 +136,8 @@ void mouse(int button, int state, int x, int y) {
 }
 
 void mouseMove(int x, int y) {
-    mouseX = x - (WINDOW_WIDTH / 2);
-    mouseY = -(y - (WINDOW_HEIGHT / 2));
+    mouseX = ((float)x - ((float)WINDOW_WIDTH / 2.0)) * ((float)WINDOW_WIDTH * 2.0 / 2000.0);
+    mouseY = (-((float)y - ((float)WINDOW_HEIGHT / 2.0))) * ((float)WINDOW_HEIGHT * 2.0 / 1000.0);
     printf("%d, %d\n", mouseX, mouseY);
     glutPostRedisplay();
 }
