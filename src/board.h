@@ -19,7 +19,7 @@ private:
     bool on;
 
 public:
-	Board(int screenWidth, int screenHeight);
+	Board(int screenWidth, int screenHeight, BoardPieceSlot *boardpieceSlotArray[]);
     void checkInPlace(Piece *pieces[]);
 	void draw();
     void turnOnGame();

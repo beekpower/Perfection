@@ -10,21 +10,14 @@
 #include "board.h"
 
 
-Board::Board(int screenWidth, int screenHeight)
+Board::Board(int screenWidth, int screenHeight, BoardPieceSlot *boardpieceSlotArray[25])
 {
 	this->screenWidth = screenWidth;
 	this->screenHeight = screenHeight;
-    on = true;
-    
-    // Create all the board piece slots
-    // Initialize all piece objects
-    int row = 0;
-    for (int i = 0; i < 25; i++) {
-        boardPiecesSlot[i] = new BoardPieceSlot(-240 + (120 *(i % 5)), 140 - (row * 120), i);
-        if(((i+1)%5) == 0) {
-            row++;
-        }
+    for(int i = 0; i < 25; i++) {
+        boardPiecesSlot[i] = boardpieceSlotArray[i];
     }
+    on = true;
 }
 
 void Board::checkInPlace(Piece* pieces[])

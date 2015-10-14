@@ -28,6 +28,7 @@ int degreeToRotate = 0;
 int mouseX, mouseY;
 
 Piece *pieces[25];
+BoardPieceSlot *boardPiecesSlot[25];
 Piece *selectedPiece;
 Board *board;
 
@@ -77,11 +78,21 @@ void init(void) {
     glClear(GL_COLOR_BUFFER_BIT);
     glMatrixMode(GL_MODELVIEW);
 
-    // Initialize the board object
-    board = new Board(WINDOW_WIDTH, WINDOW_HEIGHT);
-
+    // Create all the board piece slots
     // Initialize all piece objects
     int row = 0;
+    for (int i = 0; i < 25; i++) {
+        boardPiecesSlot[i] = new BoardPieceSlot(-240 + (120 *(i % 5)), 140 - (row * 120), i);
+        if(((i+1)%5) == 0) {
+            row++;
+        }
+    }
+    
+    // Initialize the board object
+    board = new Board(WINDOW_WIDTH, WINDOW_HEIGHT, boardPiecesSlot);
+
+    // Initialize all piece objects
+    row = 0;
     for (int i = 0; i < 25; i++) {
         pieces[i] = new Piece(105 * (i % 5), -row * 105, i);
         if(((i+1)%5) == 0) {
