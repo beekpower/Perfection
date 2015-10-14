@@ -416,13 +416,17 @@ void Shapes::drawThickCylinder(bool isPiece) {
     glPopMatrix();
     
     if(isPiece) {
-        glBegin(GL_LINE_LOOP);
-            glColor3ub(0, 0, 0);
-            glVertex2i(-43, -7);
-            glVertex2i(8, 43);
-            glVertex2i(42, 8);
-            glVertex2i(-4, -45);
-        glEnd();
+        glPushMatrix();
+            glRotatef(90,0,0,1.0);
+            
+            glBegin(GL_LINE_LOOP);
+                glColor3ub(0, 0, 0);
+                glVertex2i(-43, -7);
+                glVertex2i(8, 43);
+                glVertex2i(42, 8);
+                glVertex2i(-4, -45);
+            glEnd();
+        glPopMatrix();
         drawCenterPeg();
     }
 }
