@@ -87,7 +87,7 @@ void init(void) {
             row++;
         }
     }
-    
+
     // Initialize the board object
     board = new Board(WINDOW_WIDTH, WINDOW_HEIGHT, boardPiecesSlot);
 
@@ -121,6 +121,12 @@ void mouse(int button, int state, int x, int y) {
                         }
                     }
                 } else {
+                    if (selectedPiece->isInSlot(boardPiecesSlot[selectedPiece->getType()]))  {
+                      selectedPiece = NULL;
+                    } else {
+                      selectedPiece->restoreInitialLocation();
+                      selectedPiece = NULL;
+                    }
                     selectedPiece->restoreInitialLocation();
                     selectedPiece = NULL;
                 }
