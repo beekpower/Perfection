@@ -18,6 +18,7 @@ private:
 	int loc_y;
 	int rotation;
 	int type;
+    int rotationVelocity;
 
 public:
 	Piece(int x, int y, int t);

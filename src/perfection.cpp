@@ -126,6 +126,10 @@ void mouseMove(int x, int y) {
     glutPostRedisplay();
 }
 
+void idler() {
+    glutPostRedisplay();
+}
+
 /*Main entry point for the progam*/
 int main(int argc, char** argv) {
     srand(time(NULL)); //setup random seed
@@ -138,6 +142,7 @@ int main(int argc, char** argv) {
     glutMouseFunc(mouse);                             //set the mouse event function
     glutPassiveMotionFunc(mouseMove);
     glutDisplayFunc(draw);                     //set the redraw function                            //set the mouse event function
+    glutIdleFunc (idler);   // idler function
     init();                                           //init function
     glutMainLoop();                                   //enter the glut loop
     return (0);

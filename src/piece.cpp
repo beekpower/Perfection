@@ -16,9 +16,9 @@ Piece::Piece(int l_x, int l_y, int t)
 	loc_x = initialX;
 	loc_y = initialY;
 	type = t;
+    rotationVelocity = 0;
 }
 
-//Will incorporate the added features from header
 void Piece::draw()
 {
 	glPushMatrix();
@@ -27,16 +27,26 @@ void Piece::draw()
 		glColor3ub(230, 221, 42);
 		Shapes::drawShape(type, true);
 	glPopMatrix();
+    
+    // Rotate this shape accoring to the shape's rotation velocity
+    if ((rotation + rotationVelocity) > 360 || (rotation + rotationVelocity) < 0) {
+        rotation = rotationVelocity - (360 - rotation);
+        
+    } else {
+        rotation += rotationVelocity;
+    }
+    
+    if(rotationVelocity > 0) {
+        rotationVelocity--;
+    } else if(rotationVelocity < 0) {
+        rotationVelocity++;
+    }
 }
 
 void Piece::rotate(int degrees)
 {
-	if ((rotation + degrees) > 360 || (rotation + degrees) < 0) {
-		rotation = degrees - (360 - rotation);
-
-	} else {
-		rotation += degrees;
-	}
+    // We must increase the current rotation velocity
+    rotationVelocity += degrees * 7;
 }
 
 bool Piece::clicked(int x, int y) {
