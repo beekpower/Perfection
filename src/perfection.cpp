@@ -20,8 +20,8 @@
 #include "piece.h"
 #include "board.h"
 
-#define WINDOW_WIDTH 2000
-#define WINDOW_HEIGHT 1000
+#define WINDOW_WIDTH 1000
+#define WINDOW_HEIGHT 500
 
 int degreeToRotate = 0;
 
@@ -73,7 +73,7 @@ void init(void) {
     //Make thettons lines a bit thicker
     glLineWidth(1.0);
     //Setup the viewport
-    glOrtho(-(WINDOW_WIDTH/2), WINDOW_WIDTH/2, -(WINDOW_HEIGHT/2), WINDOW_HEIGHT/2, 1, -1);
+    glOrtho(-1000, 1000, -500, 500, 1, -1);
     //Initialy clear the screen
     glClear(GL_COLOR_BUFFER_BIT);
     glMatrixMode(GL_MODELVIEW);
