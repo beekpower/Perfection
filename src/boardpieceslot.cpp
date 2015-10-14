@@ -14,6 +14,6 @@ void BoardPieceSlot::draw()
         glTranslatef(x, y, 0);
         glRotatef(0,0,0,1);
         glColor3ub(230, 221, 42);
-        Shapes::drawShape(shape);
+        Shapes::drawShape(shape, true);
     glPopMatrix();
 }

@@ -14,9 +14,9 @@
 
 class Util {
   public:
-    void static drawCircle(int radius, int startDegree, int endDegree);
-    void static drawCircle(int radius);
-    void static drawPolygon(int n, int radius);
+    void static drawCircle(int radius, int startDegree, int endDegree, bool drawBorder);
+    void static drawCircle(int radius, bool drawBorder);
+    void static drawPolygon(int n, int radius, bool drawBorder);
 };
 
 #endif
