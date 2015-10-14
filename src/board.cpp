@@ -57,7 +57,56 @@ void Board::drawBody() {
         glVertex2f(300,-300 - boardOffset);
         glVertex2f(300,300 - boardOffset);
     glEnd();
-    // Outline it so it looks good
+    
+    // Okay, now we have to draw the horizontal / vertical lines separate the board piece slots
+    
+    // Vertical lines first
+    glLineWidth(2);
+    glBegin(GL_LINE_STRIP);
+        glColor3ub(64, 101, 147);
+        glVertex2f(-180,300 - boardOffset);
+        glVertex2f(-180,-300 - boardOffset);
+    glEnd();
+    glBegin(GL_LINE_STRIP);
+        glColor3ub(64, 101, 147);
+        glVertex2f(-60,300 - boardOffset);
+        glVertex2f(-60,-300 - boardOffset);
+    glEnd();
+    glBegin(GL_LINE_STRIP);
+        glColor3ub(64, 101, 147);
+        glVertex2f(60,300 - boardOffset);
+        glVertex2f(60,-300 - boardOffset);
+    glEnd();
+    glBegin(GL_LINE_STRIP);
+        glColor3ub(64, 101, 147);
+        glVertex2f(180,300 - boardOffset);
+        glVertex2f(180,-300 - boardOffset);
+    glEnd();
+    
+    // Horizontal lines next
+    glBegin(GL_LINE_STRIP);
+        glColor3ub(64, 101, 147);
+        glVertex2f(-300,180 - boardOffset);
+        glVertex2f(300,180 - boardOffset);
+    glEnd();
+    glBegin(GL_LINE_STRIP);
+        glColor3ub(64, 101, 147);
+        glVertex2f(-300,60 - boardOffset);
+        glVertex2f(300,60 - boardOffset);
+    glEnd();
+    glBegin(GL_LINE_STRIP);
+        glColor3ub(64, 101, 147);
+        glVertex2f(-300,-60 - boardOffset);
+        glVertex2f(300,-60 - boardOffset);
+    glEnd();
+    glBegin(GL_LINE_STRIP);
+        glColor3ub(64, 101, 147);
+        glVertex2f(-300,-180 - boardOffset);
+        glVertex2f(300,-180 - boardOffset);
+    glEnd();
+
+    
+    // Now outline the entire body so it looks good
     glLineWidth(2);
     glBegin(GL_LINE_STRIP);
         glColor3f((float)0/255, (float)0/255, (float)0/255);
@@ -67,6 +116,7 @@ void Board::drawBody() {
         glVertex2f(300,300 - boardOffset);
         glVertex2f(-300,300 - boardOffset);
     glEnd();
+    
 }
 
 void Board::drawHeader() {
