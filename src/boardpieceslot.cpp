@@ -26,6 +26,6 @@ bool BoardPieceSlot::pieceInSlot(Piece *testPiece)
     }
 
 	}
-
+    return false;
 
 }
