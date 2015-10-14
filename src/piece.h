@@ -28,6 +28,7 @@ public:
 	void rotate(int degrees);
 	bool clicked(int x, int y);
 	void setLoc(int x, int y);
+	int getType();
 	int getLocX();
 	int getLocY();
 	void restoreInitialLocation();

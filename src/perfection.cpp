@@ -36,29 +36,29 @@ void draw() {
     glClear(GL_COLOR_BUFFER_BIT);
     // Draw board
     board->draw();
-    
+
     // Draw shapes
     int row = 0;
     if (selectedPiece != NULL) {
         selectedPiece->setLoc(mouseX, mouseY);
     }
-    
+
     //Loop through each shape
     for (int i = 0; i < 25; i++) {
         pieces[i]->draw();
     }
-    
+
     glFlush();
 }
 
 void processNormalKeys(unsigned char key, int x, int y) {
-    
+
     if (selectedPiece != NULL) {
         if (key == 'a') {
             selectedPiece->rotate(1);
             glutPostRedisplay();
         }
-        
+
         if (key == 's') {
             selectedPiece->rotate(-1);
             glutPostRedisplay();
@@ -76,10 +76,10 @@ void init(void) {
     //Initialy clear the screen
     glClear(GL_COLOR_BUFFER_BIT);
     glMatrixMode(GL_MODELVIEW);
-    
+
     // Initialize the board object
     board = new Board(WINDOW_WIDTH, WINDOW_HEIGHT);
-    
+
     // Initialize all piece objects
     int row = 0;
     for (int i = 0; i < 25; i++) {
@@ -87,17 +87,17 @@ void init(void) {
         if(((i+1)%5) == 0) {
             row++;
         }
-        
+
     }
-    
+
 }
 
 /*Mouse event*/
 void mouse(int button, int state, int x, int y) {
-    
+
     x = x - (WINDOW_WIDTH / 2);
     y = -(y - (WINDOW_HEIGHT / 2));
-    
+
     switch (button) {
         case GLUT_LEFT_BUTTON:   //When something is left clicked
             if(state == GLUT_UP) {
@@ -116,13 +116,14 @@ void mouse(int button, int state, int x, int y) {
             }
             break;
     }
-    
+
     glutPostRedisplay();
 }
 
 void mouseMove(int x, int y) {
     mouseX = x - (WINDOW_WIDTH / 2);
     mouseY = -(y - (WINDOW_HEIGHT / 2));
+    board->checkInPlace(pieces);
     glutPostRedisplay();
 }
 

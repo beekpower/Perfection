@@ -17,3 +17,15 @@ void BoardPieceSlot::draw()
         Shapes::drawShape(shape, false);
     glPopMatrix();
 }
+
+bool BoardPieceSlot::pieceInSlot(Piece *testPiece)
+{
+  if (testPiece->getType() == shape) {
+		if ((x + 3) > testPiece->getLocX() && (x - 3) < testPiece->getLocX() && (y + 3) > testPiece->getLocY() && (y - 3) < testPiece->getLocY()) {
+			printf("piece in right place");
+    }
+
+	}
+
+
+}

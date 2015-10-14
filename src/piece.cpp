@@ -27,15 +27,15 @@ void Piece::draw()
 		glColor3ub(230, 221, 42);
 		Shapes::drawShape(type, true);
 	glPopMatrix();
-    
+
     // Rotate this shape accoring to the shape's rotation velocity
     if ((rotation + rotationVelocity) > 360 || (rotation + rotationVelocity) < 0) {
         rotation = rotationVelocity - (360 - rotation);
-        
+
     } else {
         rotation += rotationVelocity;
     }
-    
+
     if(rotationVelocity > 0) {
         rotationVelocity--;
     } else if(rotationVelocity < 0) {
@@ -68,6 +68,10 @@ void Piece::setLoc(int x, int y)
 {
   loc_x = x;
 	loc_y = y;
+}
+
+int Piece::getType() {
+	return type;
 }
 
 int Piece::getLocX()
