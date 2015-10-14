@@ -127,8 +127,6 @@ void mouse(int button, int state, int x, int y) {
                       selectedPiece->restoreInitialLocation();
                       selectedPiece = NULL;
                     }
-                    selectedPiece->restoreInitialLocation();
-                    selectedPiece = NULL;
                 }
             }
             break;
