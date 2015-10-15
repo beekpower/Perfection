@@ -81,6 +81,10 @@ void Piece::draw()
     } else if(rotationVelocity < 0) {
         rotationVelocity++;
     }
+    
+    if(rotation > 360) {
+        rotation = rotation - 360;
+    }
 }
 
 bool Piece::isInSlot(BoardPieceSlot *slot)
