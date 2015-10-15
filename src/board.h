@@ -17,13 +17,13 @@ private:
     void drawHeader();
     void drawBody();
     void drawBackground();
-    bool on;
 
 public:
 	Board(int screenWidth, int screenHeight, BoardPieceSlot *boardpieceSlotArray[]);
 	void draw();
     void turnOnGame();
     void turnOffGame();
+    bool on;
 };
 
 #endif

@@ -19,7 +19,13 @@ Piece::Piece(int l_x, int l_y, int t)
 	loc_x = initialX;
 	loc_y = initialY;
 	type = t;
+<<<<<<< HEAD
   rotationVelocity = 0;
+=======
+    rotationVelocity = 0;
+    returnToInitialLocation = false;
+    hasMoved = false;
+>>>>>>> f2900caf6cb0fe4dd1b7a63b6a0f81e9f33dfaa9
 }
 
 void Piece::draw()
@@ -30,6 +36,43 @@ void Piece::draw()
 		glColor3ub(230, 221, 42);
 		Shapes::drawShape(type, true);
 	glPopMatrix();
+    
+    if(returnToInitialLocation) {
+        int newX = loc_x;
+        int newY = loc_y;
+        
+        if(!hasMoved) {
+            hasMoved = true;
+            // Get the direction
+            if(initialX < newX) {
+                movingLeft = true;
+            } else if(initialX > newX) {
+                movingLeft = false;
+            }
+        }
+        if(initialX < newX) {
+            if(!movingLeft) {
+                returnToInitialLocation = false;
+                hasMoved = false;
+                loc_x = initialX;
+            } else {
+                loc_x = newX - 10;
+            }
+        } else if(initialX > newX) {
+            if(movingLeft) {
+                returnToInitialLocation = false;
+                hasMoved = false;
+                loc_x = initialX;
+            } else {
+                loc_x = newX + 10;
+            }
+        } else {
+            returnToInitialLocation = false;
+            hasMoved = false;
+            loc_x = initialX;
+        }
+
+    }
 
     // Rotate this shape accoring to the shape's rotation velocity
     if ((rotation + rotationVelocity) > 360 || (rotation + rotationVelocity) < 0) {
@@ -43,6 +86,10 @@ void Piece::draw()
         rotationVelocity--;
     } else if(rotationVelocity < 0) {
         rotationVelocity++;
+    }
+    
+    if(rotation > 360) {
+        rotation = rotation - 360;
     }
 }
 
@@ -119,8 +166,15 @@ bool Piece::clicked(int x, int y) {
 }
 
 void Piece::restoreInitialLocation() {
-	loc_x = initialX;
-	loc_y = initialY;
+	//loc_x = initialX;
+	//loc_y = initialY;
+    returnToInitialLocation = true;
+    hasMoved = false;
+}
+
+void Piece::setInitialLocation(int x, int y) {
+    initialX = x;
+    initialY = y;
 }
 
 void Piece::setLoc(int x, int y)

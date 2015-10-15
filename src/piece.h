@@ -20,8 +20,11 @@ private:
 	int rotation;
 	int symmetryCount;
 	int type;
-  int rotationVelocity;
+    int rotationVelocity;
 	bool inPlace;
+    bool returnToInitialLocation;
+    bool hasMoved;
+    bool movingLeft;
 
 public:
 	Piece(int x, int y, int t);
@@ -38,6 +41,7 @@ public:
 	int getLocX();
 	int getLocY();
 	void restoreInitialLocation();
+    void setInitialLocation(int x, int y);
 };
 
 #endif

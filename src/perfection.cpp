@@ -124,8 +124,22 @@ void mouse(int button, int state, int x, int y) {
                     if (selectedPiece->isInSlot(boardPiecesSlot[selectedPiece->getType()]))  {
                       selectedPiece = NULL;
                     } else {
-                      selectedPiece->restoreInitialLocation();
-                      selectedPiece = NULL;
+                        // Now, if the piece is on the board, set it back to the initial location
+                        if (x > (0 - 325) && x < (0 + 325) && y > (0 - 400) && y < (0 + 400)) {
+                            selectedPiece->restoreInitialLocation();
+                        } else {
+                            // Piece can be moved here, but we must update it's original location
+                            selectedPiece->setInitialLocation(x, y);
+                        }
+                        selectedPiece = NULL;
+                    }
+                }
+                // Test to see if it is within the on / off switch
+                if (x > (0 - 75) && x < (0 + 75) && y > (350 - 25 - 100) && y < (350 + 25 - 100)) {
+                    if(board->on) {
+                        board->turnOffGame();
+                    } else {
+                        board->turnOnGame();
                     }
                 }
             }
