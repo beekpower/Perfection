@@ -21,6 +21,9 @@ private:
 	int type;
     int rotationVelocity;
 	bool inPlace;
+    bool returnToInitialLocation;
+    bool hasMoved;
+    bool movingLeft;
 
 public:
 	Piece(int x, int y, int t);
