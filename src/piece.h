@@ -18,6 +18,7 @@ private:
 	int loc_x;
 	int loc_y;
 	int rotation;
+	int symmetryCount;
 	int type;
   int rotationVelocity;
 	bool inPlace;

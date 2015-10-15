@@ -1,10 +1,12 @@
 #include "piece.h"
 #include "boardpieceslot.h"
+#include "shapes.h"
 
 
 Piece::Piece(int l_x, int l_y, int t)
 {
 	rotation = Util::randomNumber(0, 360);
+	symmetryCount = Shapes::symmetricalDegrees(t);
     // Set the position of this piece to a random location
     if(Util::randomNumber(1, 2) == 1) {
         // Piece will be on a random X on the right side
@@ -17,7 +19,7 @@ Piece::Piece(int l_x, int l_y, int t)
 	loc_x = initialX;
 	loc_y = initialY;
 	type = t;
-    rotationVelocity = 0;
+  rotationVelocity = 0;
 }
 
 void Piece::draw()
@@ -46,10 +48,42 @@ void Piece::draw()
 
 bool Piece::isInSlot(BoardPieceSlot *slot)
 {
-	const int thresh = 3;
+	const int thresh = 5;
+	const int rotationThresh = 20;
+	//shapes match
 	if (slot->getShape() == type) {
+		//locations match
 		if (loc_x < (slot->getX() + thresh) && loc_x > (slot->getX() - thresh) && loc_y < (slot->getY() + thresh) && loc_y > (slot->getY() - thresh)) {
-			return true;
+			//rotations match
+			for (int i = 1; i < symmetryCount + 1; i++) {
+
+				int testDegree = 360 / i;
+					//	printf("%d\n", testDegree);
+
+				for (int j = 0; j < rotationThresh; j++) {
+					int deg;
+          if (testDegree + i > 360) {
+						deg = testDegree + i - 360;
+					} else if (testDegree - i < 0) {
+						deg = -(testDegree - i);
+					} else {
+						deg = testDegree + i;
+					}
+											printf("%d, %d\n", rotation, deg);
+
+					if (rotation == deg) {
+
+						return true;
+					}
+
+
+				}
+
+				// if (rotation < (testDegree + rotationThresh) && rotation > (testDegree - rotationThresh)) {
+				// 	return true;
+				// }
+			}
+			return false;
     } else {
 			return false;
 		}
