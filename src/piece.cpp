@@ -19,13 +19,9 @@ Piece::Piece(int l_x, int l_y, int t)
 	loc_x = initialX;
 	loc_y = initialY;
 	type = t;
-<<<<<<< HEAD
-  rotationVelocity = 0;
-=======
     rotationVelocity = 0;
     returnToInitialLocation = false;
     hasMoved = false;
->>>>>>> f2900caf6cb0fe4dd1b7a63b6a0f81e9f33dfaa9
 }
 
 void Piece::draw()
@@ -36,11 +32,11 @@ void Piece::draw()
 		glColor3ub(230, 221, 42);
 		Shapes::drawShape(type, true);
 	glPopMatrix();
-    
+
     if(returnToInitialLocation) {
         int newX = loc_x;
         int newY = loc_y;
-        
+
         if(!hasMoved) {
             hasMoved = true;
             // Get the direction
@@ -87,7 +83,7 @@ void Piece::draw()
     } else if(rotationVelocity < 0) {
         rotationVelocity++;
     }
-    
+
     if(rotation > 360) {
         rotation = rotation - 360;
     }
