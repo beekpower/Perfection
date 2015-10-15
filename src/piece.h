@@ -24,6 +24,9 @@ private:
     bool returnToInitialLocation;
     bool hasMoved;
     bool movingLeft;
+    bool movingUp;
+    bool movingY;
+    bool movingX;
 
 public:
 	Piece(int x, int y, int t);

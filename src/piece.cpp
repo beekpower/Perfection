@@ -20,6 +20,7 @@ Piece::Piece(int l_x, int l_y, int t)
     rotationVelocity = 0;
     returnToInitialLocation = false;
     hasMoved = false;
+    movingUp = false;
 }
 
 void Piece::draw()
@@ -37,33 +38,59 @@ void Piece::draw()
         
         if(!hasMoved) {
             hasMoved = true;
-            // Get the direction
+            movingY = true;
+            movingX = true;
+            // Get the horizontal direction
             if(initialX < newX) {
                 movingLeft = true;
             } else if(initialX > newX) {
                 movingLeft = false;
             }
+            
+            // Get the vertical direction
+            if(initialY < newY) {
+                movingUp = true;
+            } else if(initialY > newY) {
+                movingUp = false;
+            }
         }
+        if(initialY < newY) {
+            if(!movingUp) {
+                movingY = false;
+            } else {
+                loc_y = newY - 10;
+            }
+        } else if(initialY > newY) {
+            if(movingUp) {
+                movingY = false;
+            } else {
+                loc_y = newY + 10;
+            }
+        } else {
+            movingY = false;
+        }
+        
         if(initialX < newX) {
             if(!movingLeft) {
-                returnToInitialLocation = false;
-                hasMoved = false;
-                loc_x = initialX;
+                movingX = false;
             } else {
                 loc_x = newX - 10;
             }
         } else if(initialX > newX) {
             if(movingLeft) {
-                returnToInitialLocation = false;
-                hasMoved = false;
-                loc_x = initialX;
+                movingX = false;
             } else {
                 loc_x = newX + 10;
             }
         } else {
+            movingX = false;
+        }
+        
+        if((!movingY) && (!movingX)) {
             returnToInitialLocation = false;
             hasMoved = false;
             loc_x = initialX;
+            loc_y = initialY;
         }
 
     }
