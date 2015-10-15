@@ -19,7 +19,7 @@ private:
 	int loc_y;
 	int rotation;
 	int type;
-  int rotationVelocity;
+    int rotationVelocity;
 	bool inPlace;
 
 public:
@@ -37,6 +37,7 @@ public:
 	int getLocX();
 	int getLocY();
 	void restoreInitialLocation();
+    void setInitialLocation(int x, int y);
 };
 
 #endif

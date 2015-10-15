@@ -89,6 +89,11 @@ void Piece::restoreInitialLocation() {
 	loc_y = initialY;
 }
 
+void Piece::setInitialLocation(int x, int y) {
+    initialX = x;
+    initialY = y;
+}
+
 void Piece::setLoc(int x, int y)
 {
   loc_x = x;
