@@ -128,6 +128,14 @@ void mouse(int button, int state, int x, int y) {
                       selectedPiece = NULL;
                     }
                 }
+                // Test to see if it is within the on / off switch
+                if (x > (0 - 75) && x < (0 + 75) && y > (350 - 25 - 100) && y < (350 + 25 - 100)) {
+                    if(board->on) {
+                        board->turnOffGame();
+                    } else {
+                        board->turnOnGame();
+                    }
+                }
             }
             break;
     }
