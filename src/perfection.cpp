@@ -150,7 +150,7 @@ void mouse(int button, int state, int x, int y) {
 void mouseMove(int x, int y) {
     mouseX = ((float)x - ((float)WINDOW_WIDTH / 2.0)) * 2;//* (2000.0 / ((float)WINDOW_WIDTH * 2.0));
     mouseY = (-((float)y - ((float)WINDOW_HEIGHT / 2.0))) * 2;// * (1000.0 / ((float)WINDOW_HEIGHT * 2.0 ));
-//    printf("%d, %d\n", mouseX, mouseY);
+//    printf("%d, %d\n", mouseX, mouseY);h
     glutPostRedisplay();
 }
 
@@ -165,7 +165,7 @@ int main(int argc, char** argv) {
     glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);     //set display mode
     glutInitWindowSize(WINDOW_WIDTH, WINDOW_HEIGHT); //set the window size
     glutInitWindowPosition(100, 150);                 //set the window position
-    glutCreateWindow("Project 1 Shapes");                   //create the window and window name
+    glutCreateWindow("Perfection");                   //create the window and window name
     glutKeyboardFunc(processNormalKeys);
     glutMouseFunc(mouse);                             //set the mouse event function
     glutPassiveMotionFunc(mouseMove);
