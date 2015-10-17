@@ -190,7 +190,7 @@ void Shapes::drawHalfCircle(bool isPiece) {
     glTranslatef(15, -15, 0);
     Util::drawCircle(48, 45, 225, isPiece);
     glPopMatrix();
-    
+
     if(isPiece) {
         drawCenterPeg();
     }
@@ -250,7 +250,7 @@ void Shapes::drawRectangle(bool isPiece) {
         glVertex2i(50, -35);
         glVertex2i(-50, -35);
     glEnd();
-    
+
     if(isPiece) {
         glBegin(GL_LINE_LOOP);
             glColor3ub(0, 0, 0);
@@ -277,7 +277,7 @@ void Shapes::drawRightTriangle(bool isPiece) {
         glVertex2i(-50, -25);
     glEnd();
     glPopMatrix();
-    
+
     if(isPiece) {
         glPushMatrix();
         glTranslatef(25, -25, 0);
@@ -308,7 +308,7 @@ void Shapes::drawOctogon(bool isPiece) {
         glVertex2i(-50, 0);
         glVertex2i(-37, 37);
     glEnd();
-    
+
     if(isPiece) {
         glBegin(GL_LINE_LOOP);
             glColor3f((float)0/255, (float)0/255, (float)0/255);
@@ -365,7 +365,7 @@ void Shapes::drawThinCylinder(bool isPiece) {
     glTranslatef(25, -25, 0);
     Util::drawCircle(25, 225, 45, isPiece);
     glPopMatrix();
-    
+
     glBegin(GL_POLYGON);
         if(isPiece) {
             glColor3ub(230, 221, 42);
@@ -377,7 +377,7 @@ void Shapes::drawThinCylinder(bool isPiece) {
         glVertex2i(44, -8);
         glVertex2i(8, -44);
     glEnd();
-    
+
     if(isPiece) {
         glBegin(GL_LINE_LOOP);
             glColor3ub(0, 0, 0);
@@ -401,7 +401,7 @@ void Shapes::drawThickCylinder(bool isPiece) {
     glTranslatef(15, -15, 0);
     Util::drawCircle(35, 225, 45, isPiece);
     glPopMatrix();
-    
+
     glBegin(GL_POLYGON);
         if(isPiece) {
             glColor3ub(230, 221, 42);
@@ -414,11 +414,11 @@ void Shapes::drawThickCylinder(bool isPiece) {
         glVertex2i(-4, -45);
     glEnd();
     glPopMatrix();
-    
+
     if(isPiece) {
         glPushMatrix();
             glRotatef(90,0,0,1.0);
-            
+
             glBegin(GL_LINE_LOOP);
                 glColor3ub(0, 0, 0);
                 glVertex2i(-43, -7);
@@ -453,7 +453,7 @@ void Shapes::drawThickCross(bool isPiece) {
         glVertex2i(-48, -20);
     glEnd();
     glPopMatrix();
-    
+
     glPushMatrix();
     glRotatef(-45,0,0,1.0);
         glBegin(GL_POLYGON);
@@ -468,8 +468,8 @@ void Shapes::drawThickCross(bool isPiece) {
         glVertex2i(-48, -20);
     glEnd();
     glPopMatrix();
-    
-    
+
+
     if(isPiece) {
         glPushMatrix();
         glRotatef(45,0,0,1.0);
@@ -481,7 +481,7 @@ void Shapes::drawThickCross(bool isPiece) {
             glVertex2i(-48, -20);
         glEnd();
         glPopMatrix();
-        
+
         glPushMatrix();
         glRotatef(-45,0,0,1.0);
         glBegin(GL_LINE_LOOP);
@@ -508,7 +508,7 @@ void Shapes::drawRhombus(bool isPiece) {
         glVertex2i(50, -50);
         glVertex2i(-25, -25);
     glEnd();
-    
+
     if(isPiece) {
         glBegin(GL_LINE_LOOP);
             glColor3ub(0, 0, 0);
@@ -533,7 +533,7 @@ void Shapes::drawKite(bool isPiece) {
         glVertex2i(30, -30);
         glVertex2i(-20, -20);
     glEnd();
-    
+
     if(isPiece) {
         glBegin(GL_LINE_LOOP);
             glColor3ub(0, 0, 0);
@@ -565,7 +565,7 @@ void Shapes::draw5Star(bool isPiece) {
         glEnd();
         glPopMatrix();
     }
-    
+
     if(isPiece) {
         for (int i = 0; i < 5; i++) {
             int degree = i * (360/5);
@@ -603,7 +603,7 @@ void Shapes::draw6Star(bool isPiece) {
         glEnd();
         glPopMatrix();
     }
-    
+
     if(isPiece) {
         for (int i = 0; i < 6; i++) {
             int degree = i * (360/6);
@@ -637,7 +637,7 @@ void Shapes::drawThinCross(bool isPiece) {
         glVertex2i(-48, -7);
     glEnd();
     glPopMatrix();
-    
+
     glPushMatrix();
     glRotatef(-55,0,0,1.0);
     glBegin(GL_POLYGON);
@@ -652,7 +652,7 @@ void Shapes::drawThinCross(bool isPiece) {
         glVertex2i(-48, -7);
     glEnd();
     glPopMatrix();
-    
+
     if(isPiece) {
         glPushMatrix();
         glRotatef(55,0,0,1.0);
@@ -664,7 +664,7 @@ void Shapes::drawThinCross(bool isPiece) {
             glVertex2i(-48, -7);
         glEnd();
         glPopMatrix();
-        
+
         glPushMatrix();
         glRotatef(-55,0,0,1.0);
         glBegin(GL_LINE_LOOP);
@@ -676,7 +676,7 @@ void Shapes::drawThinCross(bool isPiece) {
         glEnd();
         glPopMatrix();
         drawCenterPeg();
-        
+
     }
 }
 
@@ -700,7 +700,7 @@ void Shapes::drawFlower(bool isPiece) {
         glEnd();
         glPopMatrix();
     }
-    
+
     if(isPiece) {
         for (int i = 0; i < 5; i++) {
             int degree = i * (360/5);
@@ -734,7 +734,7 @@ void Shapes::drawQuarterCircle(bool isPiece) {
         glVertex2i(77,0);
     glEnd();
     glPopMatrix();
-    
+
     if(isPiece) {
         glPushMatrix();
         glTranslatef(-30, -30, 0);
@@ -783,7 +783,7 @@ void Shapes::drawCircleFlower(bool isPiece) {
         Util::drawCircle(22, isPiece);
         glPopMatrix();
     }
-    
+
     if(isPiece) {
         drawCenterPeg();
     }

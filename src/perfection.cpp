@@ -23,8 +23,6 @@
 #define WINDOW_WIDTH 1000
 #define WINDOW_HEIGHT 500
 
-int degreeToRotate = 0;
-
 int mouseX, mouseY;
 
 Piece *pieces[25];
@@ -56,12 +54,12 @@ void processNormalKeys(unsigned char key, int x, int y) {
 
     if (selectedPiece != NULL) {
         if (key == 'a') {
-            selectedPiece->rotate(1);
+            selectedPiece->rotate(10);
             glutPostRedisplay();
         }
 
         if (key == 's') {
-            selectedPiece->rotate(-1);
+            selectedPiece->rotate(-10);
             glutPostRedisplay();
         }
     }
