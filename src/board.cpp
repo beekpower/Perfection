@@ -17,7 +17,7 @@ Board::Board(int screenWidth, int screenHeight, BoardPieceSlot *boardpieceSlotAr
     for(int i = 0; i < 25; i++) {
         boardPiecesSlot[i] = boardpieceSlotArray[i];
     }
-    on = true;
+    on = false;
 }
 
 void Board::draw()

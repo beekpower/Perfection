@@ -5,6 +5,9 @@
     #include "GL/freeglut.h"
     #include "GL/gl.h"
 #elif _WIN32
+	#include "GL/freeglut.h"
+	#include "GL/gl.h"
+	#define M_PI 3.1415926
     // Put your windows imports here
 #elif __APPLE__
     #include <freeglut.h>

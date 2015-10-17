@@ -19,6 +19,7 @@
 #include "stdio.h"
 #include "piece.h"
 #include "board.h"
+#include "timer.h"
 
 #define WINDOW_WIDTH 1000
 #define WINDOW_HEIGHT 500
@@ -29,6 +30,10 @@ Piece *pieces[25];
 BoardPieceSlot *boardPiecesSlot[25];
 Piece *selectedPiece;
 Board *board;
+Timer gameTimer(30000);
+bool switchActive = false;
+long usecs;
+timeval start, end;
 
 void draw() {
     //Clear the whole screen
@@ -134,8 +139,10 @@ void mouse(int button, int state, int x, int y) {
                 // Test to see if it is within the on / off switch
                 if (x > (0 - 75) && x < (0 + 75) && y > (350 - 25 - 100) && y < (350 + 25 - 100)) {
                     if(board->on) {
+						switchActive = false;
                         board->turnOffGame();
                     } else {
+						switchActive = true;
                         board->turnOnGame();
                     }
                 }
@@ -153,7 +160,12 @@ void mouseMove(int x, int y) {
 }
 
 void idler() {
+	gettimeofday(&start, NULL);
     glutPostRedisplay();
+	gettimeofday(&end, NULL);
+	usecs = end.tv_usec - start.tv_usec;
+	gameTimer.countDown(usecs, switchActive);
+	
 }
 
 /*Main entry point for the progam*/
