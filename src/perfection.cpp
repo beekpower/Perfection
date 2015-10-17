@@ -115,7 +115,6 @@ void mouse(int button, int state, int x, int y) {
                         if (pieces[i]->clicked(x, y))
                         {
                             selectedPiece = pieces[i];
-                            break;
                         }
                     }
                 } else {
