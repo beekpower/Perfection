@@ -13,7 +13,7 @@ private:
 	int screenWidth;
 	int screenHeight;
     BoardPieceSlot *boardPiecesSlot[25];
-    int boardOffset = 100; // height offset - the blue part of the board isn't centered vertically
+    int boardOffset; // height offset - the blue part of the board isn't centered vertically
     void drawHeader();
     void drawBody();
     void drawBackground();
