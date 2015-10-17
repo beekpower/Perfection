@@ -2,7 +2,6 @@
 #include "boardpieceslot.h"
 #include "shapes.h"
 
-
 Piece::Piece(int l_x, int l_y, int t)
 {
 	rotation = (Util::randomNumber(0, 360) / 10) * 10;
@@ -93,16 +92,6 @@ bool Piece::isInSlot(BoardPieceSlot *slot)
     } else {
       return false;
     }
-}
-
-void Piece::setInPlace(bool status)
-{
-	inPlace = status;
-}
-
-bool Piece::isInPlace()
-{
-	return inPlace;
 }
 
 void Piece::rotate(int degrees)

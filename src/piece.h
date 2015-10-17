@@ -20,11 +20,11 @@ private:
 	int rotation;
 	int symmetryCount;
 	int type;
-    int rotationVelocity;
+  int rotationVelocity;
 	bool inPlace;
-    bool returnToInitialLocation;
-    bool hasMoved;
-    bool movingLeft;
+  bool returnToInitialLocation;
+  bool hasMoved;
+  bool movingLeft;
 
 public:
 	Piece(int x, int y, int t);
@@ -36,12 +36,10 @@ public:
 	void setLoc(int x, int y);
 	int getType();
 	bool isInSlot(BoardPieceSlot *slot);
-	void setInPlace(bool status);
-	bool isInPlace();
 	int getLocX();
 	int getLocY();
 	void restoreInitialLocation();
-    void setInitialLocation(int x, int y);
+  void setInitialLocation(int x, int y);
 };
 
 #endif
