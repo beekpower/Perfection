@@ -67,7 +67,7 @@ void processNormalKeys(unsigned char key, int x, int y) {
 
 void init(void) {
     //Set background color to white
-    glClearColor(1,1,1,0.0);
+    glClearColor(0.52,0.25,0.23,0.0);
     //Make thettons lines a bit thicker
     glLineWidth(1.0);
     //Setup the viewport
