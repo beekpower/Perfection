@@ -18,12 +18,14 @@ extern int gettimeofday(struct timeval * tp, struct timezone * tzp);
 
 #include <stdio.h>
 #include <math.h>
+#include "util.h"
 
 class Timer
 {
 private:
 	long countTime;
 	long timeLeft;
+	GLuint outline;
 public:
 	Timer(long);
 	void countDown(long elapsedTime, bool start);

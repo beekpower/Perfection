@@ -40,7 +40,8 @@ timeval start, end;
 void draw() {
     //Clear the whole screen
     glClear(GL_COLOR_BUFFER_BIT);
-    // Draw board
+	
+	// Draw board
     board->draw();
 
     // Draw shapes
@@ -53,6 +54,8 @@ void draw() {
     for (int i = 0; i < 25; i++) {
         pieces[i]->draw();
     }
+
+	gameTimer.drawTimer();
 
     glFlush();
 }
