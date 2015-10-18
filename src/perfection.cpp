@@ -23,7 +23,7 @@
 
 #define WINDOW_WIDTH 1000
 #define WINDOW_HEIGHT 500
-#define SECONDS 30
+#define SECONDS 60
 
 int mouseX, mouseY;
 

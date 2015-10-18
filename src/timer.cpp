@@ -56,18 +56,92 @@ void Timer::drawTimer()
 		glCallList(outline);
 		glBegin(GL_POLYGON);
 		for (double i = 0; i < (2 * 3.14159); i += (3.14159 / 18))
-			glVertex2f((cos(i) * 75) - 180, (sin(i) * 75) + 310);
+			glVertex2f((cos(i) * 65) - 180, (sin(i) * 65) + 310);
+		glEnd();
+
+		glColor3f(1, 1, 0);			//"0" of 60
+		glBegin(GL_LINE_STRIP);
+		glVertex2f(-103 + 12,315);
+		glVertex2f(-97 + 12, 315);
+		glVertex2f(-97 + 12, 305);
+		glVertex2f(-103 + 12, 305);
+		glVertex2f(-103 + 12, 315);
+		glEnd();
+
+		glColor3f(1, 1, 0);			//"6" of 60
+		glBegin(GL_LINE_STRIP);
+		glVertex2f(-97, 315);
+		glVertex2f(-103, 315);
+		glVertex2f(-103, 305);
+		glVertex2f(-97, 305);
+		glVertex2f(-97, 310);
+		glVertex2f(-103, 310);
+		glEnd();
+
+		glColor3f(1, 1, 0);			//"4" of 45
+		glBegin(GL_LINE_STRIP);
+		glVertex2f(-103 - 82, 315 + 75);
+		glVertex2f(-103 - 82, 310 + 75);
+		glVertex2f(-97 - 82, 310 + 75);
+		glVertex2f(-97 - 82, 315 + 75);
+		glVertex2f(-97 - 82, 305 + 75);
+		glEnd();
+
+		glColor3f(1, 1, 0);			//"5" of 45
+		glBegin(GL_LINE_STRIP);
+		glVertex2f(-97 - 70, 315 + 75);
+		glVertex2f(-103 - 70, 315 + 75);
+		glVertex2f(-103 - 70, 310 + 75);
+		glVertex2f(-97 - 70, 310 + 75);
+		glVertex2f(-97 - 70, 305 + 75);
+		glVertex2f(-103 - 70, 305 + 75);
+		glEnd();
+
+		glColor3f(1, 1, 0);			//"3" of 30
+		glBegin(GL_LINE_STRIP);
+		glVertex2f(-103 - 165, 315);
+		glVertex2f(-97 - 165, 315);
+		glVertex2f(-97 - 165, 310);
+		glVertex2f(-103 - 165, 310);
+		glVertex2f(-97 - 165, 310);
+		glVertex2f(-97 - 165, 305);
+		glVertex2f(-103 - 165, 305);
+		glEnd();
+
+		glColor3f(1, 1, 0);			//"0" of 30
+		glBegin(GL_LINE_STRIP);
+		glVertex2f(-103 - 153, 315);
+		glVertex2f(-97 - 153, 315);
+		glVertex2f(-97 - 153, 305);
+		glVertex2f(-103 - 153, 305);
+		glVertex2f(-103 - 153, 315);
+		glEnd();
+
+		glColor3f(1, 1, 0);			//"1" of 15
+		glBegin(GL_LINE_STRIP);
+		glVertex2f(-100 - 82, 315 - 75);
+		glVertex2f(-100 - 82, 305 - 75);
+		glEnd();
+
+		glColor3f(1, 1, 0);			//"5" of 45
+		glBegin(GL_LINE_STRIP);
+		glVertex2f(-97 - 70, 315 - 75);
+		glVertex2f(-103 - 70, 315 - 75);
+		glVertex2f(-103 - 70, 310 - 75);
+		glVertex2f(-97 - 70, 310 - 75);
+		glVertex2f(-97 - 70, 305 - 75);
+		glVertex2f(-103 - 70, 305 - 75);
 		glEnd();
 
 		glTranslatef(-180, 310, 0);
-		glRotatef(-((float)timeLeft / 333333) * 12, 0, 0, 1);
+		glRotatef(-((float)timeLeft / 333333) * 6, 0, 0, 1);
 		glBegin(GL_QUADS);
 		glColor3f(0, 0, .75);
-		glVertex2f(-70, -20);
-		glVertex2f(-70, 20);
+		glVertex2f(-60, -20);
+		glVertex2f(-60, 20);
 		glColor3f(0, 0, .35);
-		glVertex2f(70, 20);
-		glVertex2f(70, -20);
+		glVertex2f(60, 20);
+		glVertex2f(60, -20);
 		glEnd();
 	glPopMatrix();
 
