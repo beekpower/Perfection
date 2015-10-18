@@ -36,5 +36,5 @@ void Timer::countDown(long elapsedTime, bool start)
 	}
 	if (timeLeft <= 0)
 		timeLeft = 0;
-	printf("time left: %d\n\n", timeLeft);
+	printf("time left: %.2f\n\n", (double)timeLeft / 333333);
 }

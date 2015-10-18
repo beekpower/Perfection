@@ -23,6 +23,7 @@
 
 #define WINDOW_WIDTH 1000
 #define WINDOW_HEIGHT 500
+#define SECONDS 30
 
 int mouseX, mouseY;
 
@@ -30,9 +31,10 @@ Piece *pieces[25];
 BoardPieceSlot *boardPiecesSlot[25];
 Piece *selectedPiece;
 Board *board;
-Timer gameTimer(30000);
+Timer gameTimer(333333 * SECONDS);
 bool switchActive = false;
-long usecs;
+long secs, usecs;
+int loopCount=0;
 timeval start, end;
 
 void draw() {
@@ -160,12 +162,18 @@ void mouseMove(int x, int y) {
 }
 
 void idler() {
-	gettimeofday(&start, NULL);
+	if (loopCount == 0 || loopCount == 1)
+		gettimeofday(&start, NULL);
     glutPostRedisplay();
-	gettimeofday(&end, NULL);
-	usecs = end.tv_usec - start.tv_usec;
-	gameTimer.countDown(usecs, switchActive);
-	
+	loopCount++;
+	if (loopCount == 3)
+	{
+		gettimeofday(&end, NULL);
+		secs = end.tv_sec - start.tv_sec;
+		usecs = end.tv_usec - start.tv_usec;
+		gameTimer.countDown((1000000*secs) + usecs, switchActive);
+		loopCount = 0;
+	}
 }
 
 /*Main entry point for the progam*/
