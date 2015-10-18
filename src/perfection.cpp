@@ -174,7 +174,12 @@ void idler() {
 		gettimeofday(&end, NULL);
 		secs = end.tv_sec - start.tv_sec;
 		usecs = end.tv_usec - start.tv_usec;
-		gameTimer.countDown((1000000*secs) + usecs, switchActive);
+		if (gameTimer.countDown((1000000 * secs) + usecs, switchActive))
+		{
+			board->turnOffGame();
+			switchActive = false;
+			gameTimer.reset();
+		}
 		loopCount = 0;
 	}
 }

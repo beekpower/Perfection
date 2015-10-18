@@ -25,10 +25,13 @@ class Timer
 private:
 	long countTime;
 	long timeLeft;
+	bool timeUp;
 	GLuint outline;
+	void drawTicks();
 public:
 	Timer(long);
-	void countDown(long elapsedTime, bool start);
+	bool countDown(long elapsedTime, bool start);
+	void reset();
 	void drawTimer();
 };
 

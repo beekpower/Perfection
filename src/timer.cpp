@@ -25,6 +25,7 @@ Timer::Timer(long time)
 {
 	countTime = time;
 	timeLeft = time;
+	timeUp = false;
 
 	outline = glGenLists(1);
 	glNewList(outline, GL_COMPILE);
@@ -37,7 +38,7 @@ Timer::Timer(long time)
 	glEndList(); 
 }
 
-void Timer::countDown(long elapsedTime, bool start)
+bool Timer::countDown(long elapsedTime, bool start)
 {
 	if (start)
 	{
@@ -45,8 +46,19 @@ void Timer::countDown(long elapsedTime, bool start)
 			timeLeft -= elapsedTime;
 	}
 	if (timeLeft <= 0)
+	{
 		timeLeft = 0;
+		timeUp = true;
+	}
 	printf("time left: %.2f\n\n", (double)timeLeft / 333333);
+
+	return timeUp;
+}
+
+void Timer::reset()
+{
+	timeLeft = countTime;
+	timeUp = false;
 }
 
 void Timer::drawTimer()
@@ -59,79 +71,7 @@ void Timer::drawTimer()
 			glVertex2f((cos(i) * 65) - 180, (sin(i) * 65) + 310);
 		glEnd();
 
-		glColor3f(1, 1, 0);			//"0" of 60
-		glBegin(GL_LINE_STRIP);
-		glVertex2f(-103 + 12,315);
-		glVertex2f(-97 + 12, 315);
-		glVertex2f(-97 + 12, 305);
-		glVertex2f(-103 + 12, 305);
-		glVertex2f(-103 + 12, 315);
-		glEnd();
-
-		glColor3f(1, 1, 0);			//"6" of 60
-		glBegin(GL_LINE_STRIP);
-		glVertex2f(-97, 315);
-		glVertex2f(-103, 315);
-		glVertex2f(-103, 305);
-		glVertex2f(-97, 305);
-		glVertex2f(-97, 310);
-		glVertex2f(-103, 310);
-		glEnd();
-
-		glColor3f(1, 1, 0);			//"4" of 45
-		glBegin(GL_LINE_STRIP);
-		glVertex2f(-103 - 82, 315 + 75);
-		glVertex2f(-103 - 82, 310 + 75);
-		glVertex2f(-97 - 82, 310 + 75);
-		glVertex2f(-97 - 82, 315 + 75);
-		glVertex2f(-97 - 82, 305 + 75);
-		glEnd();
-
-		glColor3f(1, 1, 0);			//"5" of 45
-		glBegin(GL_LINE_STRIP);
-		glVertex2f(-97 - 70, 315 + 75);
-		glVertex2f(-103 - 70, 315 + 75);
-		glVertex2f(-103 - 70, 310 + 75);
-		glVertex2f(-97 - 70, 310 + 75);
-		glVertex2f(-97 - 70, 305 + 75);
-		glVertex2f(-103 - 70, 305 + 75);
-		glEnd();
-
-		glColor3f(1, 1, 0);			//"3" of 30
-		glBegin(GL_LINE_STRIP);
-		glVertex2f(-103 - 165, 315);
-		glVertex2f(-97 - 165, 315);
-		glVertex2f(-97 - 165, 310);
-		glVertex2f(-103 - 165, 310);
-		glVertex2f(-97 - 165, 310);
-		glVertex2f(-97 - 165, 305);
-		glVertex2f(-103 - 165, 305);
-		glEnd();
-
-		glColor3f(1, 1, 0);			//"0" of 30
-		glBegin(GL_LINE_STRIP);
-		glVertex2f(-103 - 153, 315);
-		glVertex2f(-97 - 153, 315);
-		glVertex2f(-97 - 153, 305);
-		glVertex2f(-103 - 153, 305);
-		glVertex2f(-103 - 153, 315);
-		glEnd();
-
-		glColor3f(1, 1, 0);			//"1" of 15
-		glBegin(GL_LINE_STRIP);
-		glVertex2f(-100 - 82, 315 - 75);
-		glVertex2f(-100 - 82, 305 - 75);
-		glEnd();
-
-		glColor3f(1, 1, 0);			//"5" of 45
-		glBegin(GL_LINE_STRIP);
-		glVertex2f(-97 - 70, 315 - 75);
-		glVertex2f(-103 - 70, 315 - 75);
-		glVertex2f(-103 - 70, 310 - 75);
-		glVertex2f(-97 - 70, 310 - 75);
-		glVertex2f(-97 - 70, 305 - 75);
-		glVertex2f(-103 - 70, 305 - 75);
-		glEnd();
+		drawTicks();
 
 		glTranslatef(-180, 310, 0);
 		glRotatef(-((float)timeLeft / 333333) * 6, 0, 0, 1);
@@ -146,4 +86,81 @@ void Timer::drawTimer()
 	glPopMatrix();
 
 
+}
+
+void Timer::drawTicks()
+{
+	glColor3f(1, 1, 0);			//"0" of 60
+	glBegin(GL_LINE_STRIP);
+	glVertex2f(-103 + 12, 315);
+	glVertex2f(-97 + 12, 315);
+	glVertex2f(-97 + 12, 305);
+	glVertex2f(-103 + 12, 305);
+	glVertex2f(-103 + 12, 315);
+	glEnd();
+
+	glColor3f(1, 1, 0);			//"6" of 60
+	glBegin(GL_LINE_STRIP);
+	glVertex2f(-97, 315);
+	glVertex2f(-103, 315);
+	glVertex2f(-103, 305);
+	glVertex2f(-97, 305);
+	glVertex2f(-97, 310);
+	glVertex2f(-103, 310);
+	glEnd();
+
+	glColor3f(1, 1, 0);			//"4" of 45
+	glBegin(GL_LINE_STRIP);
+	glVertex2f(-103 - 82, 315 + 75);
+	glVertex2f(-103 - 82, 310 + 75);
+	glVertex2f(-97 - 82, 310 + 75);
+	glVertex2f(-97 - 82, 315 + 75);
+	glVertex2f(-97 - 82, 305 + 75);
+	glEnd();
+
+	glColor3f(1, 1, 0);			//"5" of 45
+	glBegin(GL_LINE_STRIP);
+	glVertex2f(-97 - 70, 315 + 75);
+	glVertex2f(-103 - 70, 315 + 75);
+	glVertex2f(-103 - 70, 310 + 75);
+	glVertex2f(-97 - 70, 310 + 75);
+	glVertex2f(-97 - 70, 305 + 75);
+	glVertex2f(-103 - 70, 305 + 75);
+	glEnd();
+
+	glColor3f(1, 1, 0);			//"3" of 30
+	glBegin(GL_LINE_STRIP);
+	glVertex2f(-103 - 165, 315);
+	glVertex2f(-97 - 165, 315);
+	glVertex2f(-97 - 165, 310);
+	glVertex2f(-103 - 165, 310);
+	glVertex2f(-97 - 165, 310);
+	glVertex2f(-97 - 165, 305);
+	glVertex2f(-103 - 165, 305);
+	glEnd();
+
+	glColor3f(1, 1, 0);			//"0" of 30
+	glBegin(GL_LINE_STRIP);
+	glVertex2f(-103 - 153, 315);
+	glVertex2f(-97 - 153, 315);
+	glVertex2f(-97 - 153, 305);
+	glVertex2f(-103 - 153, 305);
+	glVertex2f(-103 - 153, 315);
+	glEnd();
+
+	glColor3f(1, 1, 0);			//"1" of 15
+	glBegin(GL_LINE_STRIP);
+	glVertex2f(-100 - 82, 315 - 75);
+	glVertex2f(-100 - 82, 305 - 75);
+	glEnd();
+
+	glColor3f(1, 1, 0);			//"5" of 15
+	glBegin(GL_LINE_STRIP);
+	glVertex2f(-97 - 70, 315 - 75);
+	glVertex2f(-103 - 70, 315 - 75);
+	glVertex2f(-103 - 70, 310 - 75);
+	glVertex2f(-97 - 70, 310 - 75);
+	glVertex2f(-97 - 70, 305 - 75);
+	glVertex2f(-103 - 70, 305 - 75);
+	glEnd();
 }
