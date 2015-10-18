@@ -19,11 +19,11 @@
 #include "stdio.h"
 #include "piece.h"
 #include "board.h"
+#include "timer.h"
 
 #define WINDOW_WIDTH 1000
 #define WINDOW_HEIGHT 500
-
-int degreeToRotate = 0;
+#define SECONDS 30
 
 int mouseX, mouseY;
 
@@ -31,11 +31,17 @@ Piece *pieces[25];
 BoardPieceSlot *boardPiecesSlot[25];
 Piece *selectedPiece;
 Board *board;
+Timer gameTimer(333333 * SECONDS);
+bool switchActive = false;
+long secs, usecs;
+int loopCount=0;
+timeval start, end;
 
 void draw() {
     //Clear the whole screen
     glClear(GL_COLOR_BUFFER_BIT);
-    // Draw board
+	
+	// Draw board
     board->draw();
 
     // Draw shapes
@@ -49,6 +55,8 @@ void draw() {
         pieces[i]->draw();
     }
 
+	gameTimer.drawTimer();
+
     glFlush();
 }
 
@@ -56,12 +64,12 @@ void processNormalKeys(unsigned char key, int x, int y) {
 
     if (selectedPiece != NULL) {
         if (key == 'a') {
-            selectedPiece->rotate(1);
+            selectedPiece->rotate(10);
             glutPostRedisplay();
         }
 
         if (key == 's') {
-            selectedPiece->rotate(-1);
+            selectedPiece->rotate(-10);
             glutPostRedisplay();
         }
     }
@@ -69,7 +77,7 @@ void processNormalKeys(unsigned char key, int x, int y) {
 
 void init(void) {
     //Set background color to white
-    glClearColor(1,1,1,0.0);
+    glClearColor(0.52,0.25,0.23,0.0);
     //Make thettons lines a bit thicker
     glLineWidth(1.0);
     //Setup the viewport
@@ -106,8 +114,8 @@ void init(void) {
 /*Mouse event*/
 void mouse(int button, int state, int x, int y) {
 
-   x = ((float)x - ((float)WINDOW_WIDTH / 2.0)) * 2;/// ((float)WINDOW_WIDTH * 2.0 / 2000.0);
-   y = (-((float)y - ((float)WINDOW_HEIGHT / 2.0))) * 2;// / ((float)WINDOW_HEIGHT * 2.0 / 1000.0);
+  x = ((float)x - ((float)WINDOW_WIDTH / 2.0)) * (2000.0 / WINDOW_WIDTH);
+  y = (-((float)y - ((float)WINDOW_HEIGHT / 2.0))) * (1000.0 / WINDOW_HEIGHT);
 
     switch (button) {
         case GLUT_LEFT_BUTTON:   //When something is left clicked
@@ -117,7 +125,6 @@ void mouse(int button, int state, int x, int y) {
                         if (pieces[i]->clicked(x, y))
                         {
                             selectedPiece = pieces[i];
-                            break;
                         }
                     }
                 } else {
@@ -137,8 +144,10 @@ void mouse(int button, int state, int x, int y) {
                 // Test to see if it is within the on / off switch
                 if (x > (0 - 75) && x < (0 + 75) && y > (350 - 25 - 100) && y < (350 + 25 - 100)) {
                     if(board->on) {
+						switchActive = false;
                         board->turnOffGame();
                     } else {
+						switchActive = true;
                         board->turnOnGame();
                     }
                 }
@@ -150,14 +159,24 @@ void mouse(int button, int state, int x, int y) {
 }
 
 void mouseMove(int x, int y) {
-    mouseX = ((float)x - ((float)WINDOW_WIDTH / 2.0)) * 2;//* (2000.0 / ((float)WINDOW_WIDTH * 2.0));
-    mouseY = (-((float)y - ((float)WINDOW_HEIGHT / 2.0))) * 2;// * (1000.0 / ((float)WINDOW_HEIGHT * 2.0 ));
-    printf("%d, %d\n", mouseX, mouseY);
+    mouseX = ((float)x - ((float)WINDOW_WIDTH / 2.0)) * (2000.0 / WINDOW_WIDTH);
+    mouseY = (-((float)y - ((float)WINDOW_HEIGHT / 2.0))) * (1000.0 / WINDOW_HEIGHT);
     glutPostRedisplay();
 }
 
 void idler() {
+	if (loopCount == 0 || loopCount == 1)
+		gettimeofday(&start, NULL);
     glutPostRedisplay();
+	loopCount++;
+	if (loopCount == 3)
+	{
+		gettimeofday(&end, NULL);
+		secs = end.tv_sec - start.tv_sec;
+		usecs = end.tv_usec - start.tv_usec;
+		gameTimer.countDown((1000000*secs) + usecs, switchActive);
+		loopCount = 0;
+	}
 }
 
 /*Main entry point for the progam*/
@@ -167,7 +186,7 @@ int main(int argc, char** argv) {
     glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);     //set display mode
     glutInitWindowSize(WINDOW_WIDTH, WINDOW_HEIGHT); //set the window size
     glutInitWindowPosition(100, 150);                 //set the window position
-    glutCreateWindow("Project 1 Shapes");                   //create the window and window name
+    glutCreateWindow("Perfection");                   //create the window and window name
     glutKeyboardFunc(processNormalKeys);
     glutMouseFunc(mouse);                             //set the mouse event function
     glutPassiveMotionFunc(mouseMove);

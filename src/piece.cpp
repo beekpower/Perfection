@@ -1,10 +1,11 @@
 #include "piece.h"
 #include "boardpieceslot.h"
-
+#include "shapes.h"
 
 Piece::Piece(int l_x, int l_y, int t)
 {
-	rotation = Util::randomNumber(0, 360);
+	rotation = (Util::randomNumber(0, 360) / 10) * 10;
+	symmetryCount = Shapes::symmetricalDegrees(t);
     // Set the position of this piece to a random location
     if(Util::randomNumber(1, 2) == 1) {
         // Piece will be on a random X on the right side
@@ -17,7 +18,7 @@ Piece::Piece(int l_x, int l_y, int t)
 	loc_x = initialX;
 	loc_y = initialY;
 	type = t;
-    rotationVelocity = 0;
+  //  rotationVelocity = 0;
     returnToInitialLocation = false;
     hasMoved = false;
     movingUp = false;
@@ -31,11 +32,11 @@ void Piece::draw()
 		glColor3ub(230, 221, 42);
 		Shapes::drawShape(type, true);
 	glPopMatrix();
-    
+
     if(returnToInitialLocation) {
         int newX = loc_x;
         int newY = loc_y;
-        
+
         if(!hasMoved) {
             hasMoved = true;
             movingY = true;
@@ -94,32 +95,24 @@ void Piece::draw()
         }
 
     }
-
-    // Rotate this shape accoring to the shape's rotation velocity
-    if ((rotation + rotationVelocity) > 360 || (rotation + rotationVelocity) < 0) {
-        rotation = rotationVelocity - (360 - rotation);
-
-    } else {
-        rotation += rotationVelocity;
-    }
-
-    if(rotationVelocity > 0) {
-        rotationVelocity--;
-    } else if(rotationVelocity < 0) {
-        rotationVelocity++;
-    }
-    
-    if(rotation > 360) {
-        rotation = rotation - 360;
-    }
 }
 
 bool Piece::isInSlot(BoardPieceSlot *slot)
 {
-	const int thresh = 3;
+	const int thresh = 5;
+	//shapes match
 	if (slot->getShape() == type) {
+		//locations match
 		if (loc_x < (slot->getX() + thresh) && loc_x > (slot->getX() - thresh) && loc_y < (slot->getY() + thresh) && loc_y > (slot->getY() - thresh)) {
-			return true;
+			//rotations match
+			int incrementDegree = 360 / symmetryCount;
+			for (int testDegree = 0; testDegree < 360; testDegree += incrementDegree) {
+				int roundedDegree = round(testDegree/10) * 10;
+      	if (rotation == roundedDegree) {
+					return true;
+				}
+			}
+			return false;
     } else {
 			return false;
 		}
@@ -128,22 +121,14 @@ bool Piece::isInSlot(BoardPieceSlot *slot)
     }
 }
 
-void Piece::setInPlace(bool status)
-{
-	inPlace = status;
-}
-
-bool Piece::isInPlace()
-{
-	return inPlace;
-}
-
 void Piece::rotate(int degrees)
 {
-    // We must increase the current rotation velocity, only if it's below a threshold (don't want the piece spinning too much)
-    if(abs(rotationVelocity) < 10) {
-        rotationVelocity += degrees * 7;
-    }
+		rotation += degrees;
+		if (rotation < 0) {
+			rotation = 350;
+		} else if (rotation == 360) {
+			rotation = 0;
+		}
 }
 
 bool Piece::clicked(int x, int y) {
