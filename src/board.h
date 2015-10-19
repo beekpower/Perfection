@@ -12,11 +12,14 @@ class Board
 private:
 	int screenWidth;
 	int screenHeight;
-    BoardPieceSlot *boardPiecesSlot[25];
-    int boardOffset; // height offset - the blue part of the board isn't centered vertically
-    void drawHeader();
-    void drawBody();
-    void drawBackground();
+  BoardPieceSlot *boardPiecesSlot[25];
+  int boardOffset; // height offset - the blue part of the board isn't centered vertically
+  void drawHeader();
+	int mainBoard;
+	int outline;
+	int body;
+	void initDisplayLists();
+	int board;
 
 public:
 	Board(int screenWidth, int screenHeight, BoardPieceSlot *boardpieceSlotArray[]);

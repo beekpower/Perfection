@@ -20,13 +20,15 @@ Board::Board(int screenWidth, int screenHeight, BoardPieceSlot *boardpieceSlotAr
     }
     on = false;
 
-
+	initDisplayLists();
 }
 
 void Board::draw()
 {
-    this->drawBackground();
-    this->drawBody();
+    //glCallList(this->board);
+		glCallList(this->mainBoard);
+		glCallList(this->outline);
+		glCallList(this->body);
     this->drawHeader();
     for (int i = 0; i < 25; i++) {
         glColor3ub(230, 221, 42);
@@ -47,97 +49,112 @@ void Board::turnOffGame() {
     on = false;
 }
 
-void Board::drawBackground() {
-    // Main board
-    glBegin(GL_QUADS);
-        glColor3f((float)210/255, (float)24/255, (float)26/255);
-        glVertex2f(-325,400 + (boardOffset/2));
-        glVertex2f(-325,-400 - (boardOffset/2));
-        glVertex2f(325,-400 - (boardOffset/2));
-        glVertex2f(325,400 + (boardOffset/2));
-    glEnd();
-    // Outline it so it looks good
-    glLineWidth(2);
-        glBegin(GL_LINE_STRIP);
-        glColor3f((float)0/255, (float)0/255, (float)0/255);
-        glVertex2f(-325,400 + (boardOffset/2));
-        glVertex2f(-325,-400 - (boardOffset/2));
-        glVertex2f(325,-400 - (boardOffset/2));
-        glVertex2f(325,400 + (boardOffset/2));
-        glVertex2f(-325,400 + (boardOffset/2));
-    glEnd();
-}
+void Board::initDisplayLists() {
+//	int mainBoard = glGenLists(1);
+//  int outline = glGenLists(1);
+//	int body = glGenLists(1);
+
+	// Main board
+  glNewList(mainBoard, GL_COMPILE);
+		glBegin(GL_QUADS);
+				glColor3f((float)210/255, (float)24/255, (float)26/255);
+				glVertex2f(-325,400 + (boardOffset/2));
+				glVertex2f(-325,-400 - (boardOffset/2));
+				glVertex2f(325,-400 - (boardOffset/2));
+				glVertex2f(325,400 + (boardOffset/2));
+		glEnd();
+  glEndList();
+
+  //outline
+  glNewList(outline, GL_COMPILE);
+		// Outline it so it looks good
+		glLineWidth(2);
+		glBegin(GL_LINE_STRIP);
+				glColor3f((float)0/255, (float)0/255, (float)0/255);
+				glVertex2f(-325,400 + (boardOffset/2));
+				glVertex2f(-325,-400 - (boardOffset/2));
+				glVertex2f(325,-400 - (boardOffset/2));
+				glVertex2f(325,400 + (boardOffset/2));
+				glVertex2f(-325,400 + (boardOffset/2));
+		glEnd();
+  glEndList();
+
+	//body
+  glNewList(body, GL_COMPILE);
+		// Main blue section
+		glBegin(GL_QUADS);
+				glColor3f((float)39/255, (float)116/255, (float)212/255);
+				glVertex2f(-300,300 - boardOffset);
+				glVertex2f(-300,-300 - boardOffset);
+				glVertex2f(300,-300 - boardOffset);
+				glVertex2f(300,300 - boardOffset);
+		glEnd();
+
+		// Okay, now we have to draw the horizontal / vertical lines separate the board piece slots
+
+		// Vertical lines first
+		glLineWidth(2);
+		glBegin(GL_LINE_STRIP);
+				glColor3ub(64, 101, 147);
+				glVertex2f(-180,300 - boardOffset);
+				glVertex2f(-180,-300 - boardOffset);
+		glEnd();
+		glBegin(GL_LINE_STRIP);
+				glColor3ub(64, 101, 147);
+				glVertex2f(-60,300 - boardOffset);
+				glVertex2f(-60,-300 - boardOffset);
+		glEnd();
+		glBegin(GL_LINE_STRIP);
+				glColor3ub(64, 101, 147);
+				glVertex2f(60,300 - boardOffset);
+				glVertex2f(60,-300 - boardOffset);
+		glEnd();
+		glBegin(GL_LINE_STRIP);
+				glColor3ub(64, 101, 147);
+				glVertex2f(180,300 - boardOffset);
+				glVertex2f(180,-300 - boardOffset);
+		glEnd();
+
+		// Horizontal lines next
+		glBegin(GL_LINE_STRIP);
+				glColor3ub(64, 101, 147);
+				glVertex2f(-300,180 - boardOffset);
+				glVertex2f(300,180 - boardOffset);
+		glEnd();
+		glBegin(GL_LINE_STRIP);
+				glColor3ub(64, 101, 147);
+				glVertex2f(-300,60 - boardOffset);
+				glVertex2f(300,60 - boardOffset);
+		glEnd();
+		glBegin(GL_LINE_STRIP);
+				glColor3ub(64, 101, 147);
+				glVertex2f(-300,-60 - boardOffset);
+				glVertex2f(300,-60 - boardOffset);
+		glEnd();
+		glBegin(GL_LINE_STRIP);
+				glColor3ub(64, 101, 147);
+				glVertex2f(-300,-180 - boardOffset);
+				glVertex2f(300,-180 - boardOffset);
+		glEnd();
 
 
-void Board::drawBody() {
-    // Main blue section
-    glBegin(GL_QUADS);
-        glColor3f((float)39/255, (float)116/255, (float)212/255);
-        glVertex2f(-300,300 - boardOffset);
-        glVertex2f(-300,-300 - boardOffset);
-        glVertex2f(300,-300 - boardOffset);
-        glVertex2f(300,300 - boardOffset);
-    glEnd();
+		// Now outline the entire body so it looks good
+		glLineWidth(2);
+		glBegin(GL_LINE_STRIP);
+				glColor3f((float)0/255, (float)0/255, (float)0/255);
+				glVertex2f(-300,300 - boardOffset);
+				glVertex2f(-300,-300 - boardOffset);
+				glVertex2f(300,-300 - boardOffset);
+				glVertex2f(300,300 - boardOffset);
+				glVertex2f(-300,300 - boardOffset);
+		glEnd();
+  glEndList();
 
-    // Okay, now we have to draw the horizontal / vertical lines separate the board piece slots
-
-    // Vertical lines first
-    glLineWidth(2);
-    glBegin(GL_LINE_STRIP);
-        glColor3ub(64, 101, 147);
-        glVertex2f(-180,300 - boardOffset);
-        glVertex2f(-180,-300 - boardOffset);
-    glEnd();
-    glBegin(GL_LINE_STRIP);
-        glColor3ub(64, 101, 147);
-        glVertex2f(-60,300 - boardOffset);
-        glVertex2f(-60,-300 - boardOffset);
-    glEnd();
-    glBegin(GL_LINE_STRIP);
-        glColor3ub(64, 101, 147);
-        glVertex2f(60,300 - boardOffset);
-        glVertex2f(60,-300 - boardOffset);
-    glEnd();
-    glBegin(GL_LINE_STRIP);
-        glColor3ub(64, 101, 147);
-        glVertex2f(180,300 - boardOffset);
-        glVertex2f(180,-300 - boardOffset);
-    glEnd();
-
-    // Horizontal lines next
-    glBegin(GL_LINE_STRIP);
-        glColor3ub(64, 101, 147);
-        glVertex2f(-300,180 - boardOffset);
-        glVertex2f(300,180 - boardOffset);
-    glEnd();
-    glBegin(GL_LINE_STRIP);
-        glColor3ub(64, 101, 147);
-        glVertex2f(-300,60 - boardOffset);
-        glVertex2f(300,60 - boardOffset);
-    glEnd();
-    glBegin(GL_LINE_STRIP);
-        glColor3ub(64, 101, 147);
-        glVertex2f(-300,-60 - boardOffset);
-        glVertex2f(300,-60 - boardOffset);
-    glEnd();
-    glBegin(GL_LINE_STRIP);
-        glColor3ub(64, 101, 147);
-        glVertex2f(-300,-180 - boardOffset);
-        glVertex2f(300,-180 - boardOffset);
-    glEnd();
-
-
-    // Now outline the entire body so it looks good
-    glLineWidth(2);
-    glBegin(GL_LINE_STRIP);
-        glColor3f((float)0/255, (float)0/255, (float)0/255);
-        glVertex2f(-300,300 - boardOffset);
-        glVertex2f(-300,-300 - boardOffset);
-        glVertex2f(300,-300 - boardOffset);
-        glVertex2f(300,300 - boardOffset);
-        glVertex2f(-300,300 - boardOffset);
-    glEnd();
-
+	glNewList(board, GL_COMPILE);
+		glCallList(mainBoard);
+		glCallList(outline);
+		glCallList(body);
+  glEndList();
 }
 
 void Board::drawHeader() {
@@ -213,5 +230,3 @@ void Board::drawHeader() {
 
 
 }
-
-
