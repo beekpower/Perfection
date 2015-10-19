@@ -63,18 +63,27 @@ void Timer::reset()
 
 void Timer::drawTimer()
 {
-	glPushMatrix();
+glPushMatrix();
 		glColor3f(0, 0, 1);
 		glCallList(outline);
 		glBegin(GL_POLYGON);
 		for (double i = 0; i < (2 * 3.14159); i += (3.14159 / 18))
 			glVertex2f((cos(i) * 65) - 180, (sin(i) * 65) + 310);
 		glEnd();
-
 		drawTicks();
+		
 
-		glTranslatef(-180, 310, 0);
-		glRotatef(-((float)timeLeft / 333333) * 6, 0, 0, 1);
+	glTranslatef(-180, 310, 0);
+	glRotatef(-((float)timeLeft / 333333) * 6, 0, 0, 1);
+
+    glBegin(GL_TRIANGLES);	
+  	glColor3f(0.0,0.0,0.75);
+	glVertex2f(60, -20);
+	glVertex2f(60, 20);		
+	glVertex2f(80,0);		
+	
+	glEnd();
+
 		glBegin(GL_QUADS);
 		glColor3f(0, 0, .75);
 		glVertex2f(-60, -20);
@@ -83,13 +92,15 @@ void Timer::drawTimer()
 		glVertex2f(60, 20);
 		glVertex2f(60, -20);
 		glEnd();
-	glPopMatrix();
 
+
+	glPopMatrix();
 
 }
 
 void Timer::drawTicks()
 {
+
 	glColor3f(1, 1, 0);			//"0" of 60
 	glBegin(GL_LINE_STRIP);
 	glVertex2f(-103 + 12, 315);
