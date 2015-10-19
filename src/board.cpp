@@ -7,6 +7,7 @@
 #include <freeglut.h>
 #endif
 
+#include "string"
 #include "board.h"
 
 Board::Board(int screenWidth, int screenHeight, BoardPieceSlot *boardpieceSlotArray[25])
@@ -18,6 +19,8 @@ Board::Board(int screenWidth, int screenHeight, BoardPieceSlot *boardpieceSlotAr
         boardPiecesSlot[i] = boardpieceSlotArray[i];
     }
     on = false;
+
+
 }
 
 void Board::draw()
@@ -29,6 +32,11 @@ void Board::draw()
         glColor3ub(230, 221, 42);
         boardPiecesSlot[i]->draw();
     }
+glBegin(GL_BITMAP);
+            glColor3ub(230, 221, 42);
+            glRasterPos2i(5, 420 - boardOffset);
+            glutBitmapString(GLUT_BITMAP_HELVETICA_18, (const unsigned char*)"PERFECTION");
+        glEnd();
 }
 
 void Board::turnOnGame() {
@@ -59,6 +67,7 @@ void Board::drawBackground() {
         glVertex2f(-325,400 + (boardOffset/2));
     glEnd();
 }
+
 
 void Board::drawBody() {
     // Main blue section
@@ -165,6 +174,8 @@ void Board::drawHeader() {
             glutBitmapString(GLUT_BITMAP_HELVETICA_18, (const unsigned char*)"ON");
         glEnd();
 
+
+
         // Switch section
         glBegin(GL_QUADS);
             glColor3f((float)0/255, (float)0/255, (float)0/255);
@@ -200,3 +211,5 @@ void Board::drawHeader() {
         glVertex2f(-300,500 - boardOffset);
     glEnd();
 }
+
+
