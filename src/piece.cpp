@@ -2,26 +2,15 @@
 #include "boardpieceslot.h"
 #include "shapes.h"
 
-Piece::Piece(int l_x, int l_y, int t)
+Piece::Piece(int l_x, int l_y, int type)
 {
-	rotation = (Util::randomNumber(0, 360) / 10) * 10;
-	symmetryCount = Shapes::symmetricalDegrees(t);
-    // Set the position of this piece to a random location
-    if(Util::randomNumber(1, 2) == 1) {
-        // Piece will be on a random X on the right side
-        initialX = Util::randomNumber(525, 100);
-    } else {
-        // Piece will be on a random X on the left side
-        initialX = Util::randomNumber(-925, -400);
-    }
-    initialY = Util::randomNumber(-400, 400);
+	randomizeInitialLocation();
 	loc_x = initialX;
 	loc_y = initialY;
-	type = t;
-  //  rotationVelocity = 0;
-    returnToInitialLocation = false;
-    hasMoved = false;
-    movingUp = false;
+	this->type = type;
+  returnToInitialLocation = false;
+  hasMoved = false;
+  movingUp = false;
 }
 
 void Piece::draw()
@@ -47,7 +36,7 @@ void Piece::draw()
             } else if(initialX > newX) {
                 movingLeft = false;
             }
-            
+
             // Get the vertical direction
             if(initialY < newY) {
                 movingUp = true;
@@ -70,7 +59,7 @@ void Piece::draw()
         } else {
             movingY = false;
         }
-        
+
         if(initialX < newX) {
             if(!movingLeft) {
                 movingX = false;
@@ -86,7 +75,7 @@ void Piece::draw()
         } else {
             movingX = false;
         }
-        
+
         if((!movingY) && (!movingX)) {
             returnToInitialLocation = false;
             hasMoved = false;
@@ -95,6 +84,20 @@ void Piece::draw()
         }
 
     }
+}
+
+void Piece::randomizeInitialLocation() {
+	rotation = (Util::randomNumber(0, 360) / 10) * 10;
+	symmetryCount = Shapes::symmetricalDegrees(type);
+	// Set the position of this piece to a random location
+	if(Util::randomNumber(1, 2) == 1) {
+			// Piece will be on a random X on the right side
+			initialX = Util::randomNumber(525, 100);
+	} else {
+			// Piece will be on a random X on the left side
+			initialX = Util::randomNumber(-925, -400);
+	}
+	initialY = Util::randomNumber(-400, 400);
 }
 
 bool Piece::isInSlot(BoardPieceSlot *slot)

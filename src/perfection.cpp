@@ -40,7 +40,7 @@ timeval start, end;
 void draw() {
     //Clear the whole screen
     glClear(GL_COLOR_BUFFER_BIT);
-	
+    
 	// Draw board
     board->draw();
 

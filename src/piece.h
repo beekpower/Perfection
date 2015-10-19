@@ -43,6 +43,7 @@ public:
 	int getLocY();
 	void restoreInitialLocation();
   void setInitialLocation(int x, int y);
+	void randomizeInitialLocation();
 };
 
 #endif
