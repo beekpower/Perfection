@@ -40,9 +40,10 @@ timeval start, end;
 void draw() {
     //Clear the whole screen
     glClear(GL_COLOR_BUFFER_BIT);
-    
+
 	// Draw board
     board->draw();
+    glScalef(1.0,1.000000000000001,1.0);
 
     // Draw shapes
     int row = 0;
@@ -178,12 +179,12 @@ void idler() {
 		{
 			board->turnOffGame();
 	for(int i=0; i<25;i++)
-	{			
+	{
 		if(pieces[i]->isInSlot(boardPiecesSlot[i]))
 		{
 			pieces[i]->randomizeInitialLocation();
 			pieces[i]->restoreInitialLocation();
-		}	
+		}
 	}
 			switchActive = false;
 			gameTimer.reset();
