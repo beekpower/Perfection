@@ -210,6 +210,8 @@ void Board::drawHeader() {
         glVertex2f(300,500 - boardOffset);
         glVertex2f(-300,500 - boardOffset);
     glEnd();
+
+
 }
 
 
