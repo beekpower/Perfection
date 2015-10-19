@@ -177,6 +177,14 @@ void idler() {
 		if (gameTimer.countDown((1000000 * secs) + usecs, switchActive))
 		{
 			board->turnOffGame();
+	for(int i=0; i<25;i++)
+	{			
+		if(pieces[i]->isInSlot(boardPiecesSlot[i]))
+		{
+			pieces[i]->randomizeInitialLocation();
+			pieces[i]->restoreInitialLocation();
+		}	
+	}
 			switchActive = false;
 			gameTimer.reset();
 		}
