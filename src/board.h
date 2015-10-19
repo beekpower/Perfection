@@ -18,6 +18,7 @@ private:
 	int mainBoard;
 	int outline;
 	int body;
+	void drawBody();
 	void initDisplayLists();
 	int board;
 
