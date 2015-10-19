@@ -263,6 +263,7 @@ void Board::drawHeader() {
         glVertex2f(75,375 - boardOffset);
     glEnd();
     glLineWidth(2);
+
     glBegin(GL_LINE_LOOP);
         glColor3ub(230, 221, 42);
         glVertex2f(-75,375 - boardOffset);
@@ -305,6 +306,9 @@ void Board::drawHeader() {
         glEnd();
     }
 
+
+		glEnable(GL_LINE_STIPPLE);
+    glLineStipple(5, 0xAAAA);
     // Outline of entire header
     glBegin(GL_LINE_STRIP);
         glColor3ub(230, 221, 42);
@@ -314,6 +318,7 @@ void Board::drawHeader() {
         glVertex2f(300,500 - boardOffset);
         glVertex2f(-300,500 - boardOffset);
     glEnd();
+		glDisable(GL_LINE_STIPPLE);
 
 
 }
