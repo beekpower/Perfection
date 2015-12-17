@@ -1,1 +1,1 @@
-It's Perfection bitches! In Open fucking GL.
+It's Perfection! In Open GL.
